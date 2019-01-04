@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router } from "react-router-dom"
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        Virtue Group
-      </div>
-    );
-  }
-}
+import './App.css'
 
-export default App;
+const App = () => (
+  <Router>
+    <div>
+      Virtue Group
+    </div>
+  </Router>
+)
+
+export default App
