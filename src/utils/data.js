@@ -23,7 +23,6 @@ const matchNavItem = path => {
   return navData.find(item => item.path === path)
 }
 
-module.exports = {
-  navData,
-  matchNavItem
+export {
+  navData, matchNavItem
 }
