@@ -5,7 +5,7 @@ import colors from '../utils/colors'
 import { navData, linkSize, findActiveLink } from '../utils/data'
 
 const Navbar = ({location}) => {
-  const {id} = findActiveLink(location.pathname)
+  const id = findActiveLink(location.pathname) ? findActiveLink(location.pathname).id : 0
   const {width, height, margin, scoreWidth, scoreThickness} = linkSize
   const scorePosition = id * (width + 2*margin) + width/2 + margin - scoreWidth/2
 
