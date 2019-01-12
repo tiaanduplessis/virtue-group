@@ -27,7 +27,8 @@ const Navbar = ({location}) => {
         width: ${width}em;
         height: ${height}em;
         margin: ${margin}em;
-        transition: 50ms ease-in-out;
+        transition: 150ms ease-in-out;
+        border: ${scoreThickness}em solid rgba(0,0,0,0);
       }
       .navbar-link:hover {
         border: ${scoreThickness}em solid ${colors.primary};
