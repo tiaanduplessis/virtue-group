@@ -1,36 +1,58 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, withRouter } from "react-router-dom"
 
 import colors from '../utils/colors'
-import { navData } from '../utils/data'
+import { navData, linkSize, findActiveLink } from '../utils/data'
 
-const Navbar = () => {
+const Navbar = ({location}) => {
+  const {id} = findActiveLink(location.pathname)
+  const {width, height, margin, scoreWidth, scoreThickness} = linkSize
+  const scorePosition = id * (width + 2*margin) + width/2 + margin - scoreWidth/2
 
   return <ul className="navbar">
+    <div className="navbar-score" />
     { navData.map(item => {
-      return <li key={item.id} className="nav-link">
+      return <li key={item.id} className="navbar-link">
         <NavLink to={item.path}>
           {item.name}
         </NavLink>
       </li>
-    }) }
-    <style jsx>{`
+    })}
+    <style global jsx>{`
       .navbar {
         display: flex;
+        position: relative;
       }
-      .nav-link {
+      .navbar-link {
+        width: ${width}em;
+        height: ${height}em;
+        margin: ${margin}em;
+        transition: 50ms ease-in-out;
+      }
+      .navbar-link:hover {
+        border: ${scoreThickness}em solid ${colors.primary};
+      }
+      .navbar-link a {
+        font-size: 1.1em;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.1em;
-        min-width: 8em;
-        height: 3em;
+        width: 100%;
+        height: 100%;
       }
-      .nav-link:hover {
-        border: 5px solid ${colors.primary};
+      .navbar-score {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translate(${scorePosition}em, -${margin}em);
+        transition: transform 500ms ease-in-out;
+        height: ${scoreThickness}em;
+        width: ${scoreWidth}em;
+        background-color: ${colors.primary};
+        bottom: 0px;
       }
     `}</style>
   </ul>
 }
 
-export default Navbar
+export default withRouter(Navbar)

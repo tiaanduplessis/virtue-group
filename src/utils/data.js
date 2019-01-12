@@ -19,10 +19,16 @@ const navData = [
   }
 ]
 
-const matchNavItem = path => {
+const linkSize = {
+  margin: .5,
+  width: 9,
+  height: 2.7,
+  scoreWidth: 3,
+  scoreThickness: .25
+}
+
+const findActiveLink = path => {
   return navData.find(item => item.path === path)
 }
 
-export {
-  navData, matchNavItem
-}
+export { navData, linkSize, findActiveLink }
