@@ -17,7 +17,7 @@ const Navbar = ({location}) => {
           {item.name}
         </NavLink>
       </li>
-    }) }
+    })}
     <style global jsx>{`
       .navbar {
         display: flex;
