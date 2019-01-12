@@ -16,7 +16,9 @@ const App = () => <div>
   <Navbar/>
 
   <Switch>
-    {navData.map(item => <Route key={item.id} path={item.path} component={pages[item.page]}/>)}
+    {navData.map(item =>
+      <Route key={item.id} path={item.path} component={pages[item.page]}/>
+    )}
     <Redirect to='/home'/>
   </Switch>
 
