@@ -13,6 +13,18 @@ const navData = [
   },
   {
     id: 2,
+    name: 'Electrical',
+    path: '/electrical',
+    page: 'Electrical'
+  },
+  {
+    id: 3,
+    name: 'Plumbing',
+    path: '/plumbing',
+    page: 'Plumbing'
+  },
+  {
+    id: 4,
     name: 'Contact Us',
     path: '/contact-us',
     page: 'Contact'
@@ -21,10 +33,10 @@ const navData = [
 
 const linkSize = {
   margin: .5,
-  width: 9,
-  height: 2.7,
+  width: 7,
+  height: 2.5,
   scoreWidth: 3,
-  scoreThickness: .25
+  scoreThickness: .2
 }
 
 const findActiveLink = path => {

@@ -33,7 +33,8 @@ const App = () => <div>
       list-style: none;
     }
 
-    body {
+    #root {
+      min-height: 100vh;
       font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
@@ -45,6 +46,7 @@ const App = () => <div>
       font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
     }
+
   `}</style>
 </div>
 
