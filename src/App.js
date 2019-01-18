@@ -9,9 +9,11 @@ import Navbar from './components/Navbar'
 
 import Home from './pages/Home'
 import About from './pages/About'
+import Electrical from './pages/Electrical'
+import Plumbing from './pages/Plumbing'
 import Contact from './pages/Contact'
 
-const pages = { Home, About, Contact }
+const pages = { Home, About, Electrical, Plumbing, Contact }
 
 const App = () => <div>
 
