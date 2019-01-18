@@ -1,7 +1,9 @@
 import React from 'react'
 import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 
-import { navData } from './utils/data'
+import colors from './utils/colors'
+
+import { navData } from './utils/navData'
 
 import Navbar from './components/Navbar'
 
@@ -29,8 +31,9 @@ const App = () => <div>
       margin: 0;
       padding: 0;
       text-decoration: none;
-      color: #000;
+      color: ${colors.black};
       list-style: none;
+      background-color: ${colors.white}
     }
 
     #root {

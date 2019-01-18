@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, withRouter } from "react-router-dom"
 
 import colors from '../utils/colors'
-import { navData, linkSize, findActiveLink } from '../utils/data'
+import { navData, linkSize, findActiveLink } from '../utils/navData'
 
 const NavbarMenu = ({location}) => {
   const id = findActiveLink(location.pathname) ? findActiveLink(location.pathname).id : 0

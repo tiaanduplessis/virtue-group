@@ -5,7 +5,8 @@ import Logo from './Logo'
 
 const Navbar = () => <nav>
 
-  <Logo/>
+  <Logo compact={true}/>
+
   <NavbarMenu/>
 
   <style jsx>{`
@@ -14,7 +15,6 @@ const Navbar = () => <nav>
       justify-content: space-between;
       align-items: center;
       padding: .5em;
-      height: 5em;
     }
   `}</style>
 </nav>
