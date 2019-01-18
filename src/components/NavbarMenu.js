@@ -40,6 +40,9 @@ const NavbarMenu = ({location}) => {
         align-items: center;
         width: 100%;
         height: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 500;
       }
       .navbar-score {
         position: absolute;

@@ -33,9 +33,9 @@ const navData = [
 
 const linkSize = {
   margin: .5,
-  width: 7,
+  width: 8,
   height: 2.5,
-  scoreWidth: 3,
+  scoreWidth: 2.5,
   scoreThickness: .2
 }
 
