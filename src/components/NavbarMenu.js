@@ -42,7 +42,7 @@ const NavbarMenu = ({location}) => {
         height: 100%;
         text-transform: uppercase;
         letter-spacing: 0.04em;
-        font-weight: 500;
+        font-weight: 400;
       }
       .navbar-score {
         position: absolute;

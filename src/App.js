@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Switch, Route, Redirect, withRouter } from "react-router-dom"
+import { TransitionGroup, CSSTransition } from "react-transition-group"
 
 import colors from './utils/colors'
 
@@ -15,16 +16,26 @@ import Contact from './pages/Contact'
 
 const pages = { Home, About, Electrical, Plumbing, Contact }
 
-const App = () => <div>
+const App = ({ location }) => <Fragment>
 
   <Navbar/>
 
-  <Switch>
-    {navData.map(item =>
-      <Route key={item.id} path={item.path} component={pages[item.page]}/>
-    )}
-    <Redirect to='/home'/>
-  </Switch>
+  <TransitionGroup className="transition-group">
+    <CSSTransition
+      key={location.key}
+      timeout={{ enter: 400, exit: 200 }}
+      classNames="fade"
+    >
+      <section className="route-section">
+        <Switch location={location}>
+          {navData.map(item =>
+            <Route key={item.id} path={item.path} component={pages[item.page]}/>
+          )}
+          <Redirect to='/home'/>
+        </Switch>
+      </section>
+    </CSSTransition>
+  </TransitionGroup>
 
   <style global jsx>{`
     * {
@@ -49,12 +60,45 @@ const App = () => <div>
 
     code {
       font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+      monospace;
+    }
+
+    .fade-enter {
+      opacity: 0.01;
+      transform: translateY(5em) scale(0.99);
+      transform-origin: center;
+    }
+
+    .fade-enter.fade-enter-active {
+      opacity: 1;
+      transform: translateY(0em) scale(1);
+      transition: 200ms 200ms ease-in-out;
+    }
+
+    .fade-exit {
+      opacity: 1;
+      transform: translateY(0em) scale(1);
+    }
+
+    .fade-exit.fade-exit-active {
+      opacity: 0.01;
+      transform: translateY(5em) scale(0.99);
+      transition: 200ms ease-in-out;
+    }
+
+    div.transition-group {
+      position: relative;
+    }
+    section.route-section {
+      position: absolute;
+      min-width: 100vw;
+      top: 0;
+      left: 0;
+      margin-top: 4.5em;
     }
 
   `}</style>
-</div>
-
+</Fragment>
 
 
 export default withRouter(App)
