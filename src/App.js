@@ -6,8 +6,6 @@ import colors from './utils/colors'
 
 import { navData } from './utils/navData'
 
-import Navbar from './components/Navbar'
-
 import Home from './pages/Home'
 import About from './pages/About'
 import Electrical from './pages/Electrical'
@@ -17,8 +15,6 @@ import Contact from './pages/Contact'
 const pages = { Home, About, Electrical, Plumbing, Contact }
 
 const App = ({ location }) => <Fragment>
-
-  <Navbar/>
 
   <TransitionGroup className="transition-group">
     <CSSTransition
