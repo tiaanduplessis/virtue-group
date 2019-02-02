@@ -20,8 +20,9 @@ const pages = { Home, About, Electrical, Plumbing, Contact }
 
 const App = ({ location }) => <MuiThemeProvider theme={theme}>
 
-  <Navbar />
   <Background>
+
+    <Navbar />
 
     <TransitionGroup>
       <CSSTransition

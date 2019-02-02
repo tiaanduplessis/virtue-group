@@ -24,7 +24,6 @@ class Navbar extends Component {
 
     const { value } = this.state
 
-
     return <div className="navbar-wrapper">
       <AppBar>
         <Toolbar>
