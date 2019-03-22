@@ -1,16 +1,23 @@
-import React, { Component } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
+import { Switch, Route, Redirect, withRouter } from "react-router-dom"
+import { TransitionGroup, CSSTransition } from "react-transition-group"
+
+import { AppBar, Toolbar, Tabs, Tab, Typography  } from '@material-ui/core'
+
+import Home from '../pages/Home'
+import About from '../pages/About'
+import Electrical from '../pages/Electrical'
+import Plumbing from '../pages/Plumbing'
+import Contact from '../pages/Contact'
 
 import { navData } from '../utils/navData'
 
 import Logo from './Logo'
 
-class Navbar extends Component {
+const pages = { Home, About, Electrical, Plumbing, Contact }
+
+class Navbar extends PureComponent {
 
   state = {
     value: 0
@@ -21,10 +28,11 @@ class Navbar extends Component {
   }
 
   render() {
-
     const { value } = this.state
+    const { location } = this.props
 
-    return <div className="navbar-wrapper">
+    return <Fragment>
+
       <AppBar>
         <Toolbar>
           <Logo compact={true}/>
@@ -36,14 +44,27 @@ class Navbar extends Component {
         </Tabs>
       </AppBar>
 
-      <style jsx>{`
-        .navbar-wrapper {
-          position: fixed;
-        }
-      `}</style>
-    </div>
-  }
+      <TransitionGroup>
+        <CSSTransition
+          key={location.key}
+          timeout={{ enter: 400, exit: 200 }}
+          classNames="fade"
+        >
+          <section className="route-section">
+            <Switch location={location}>
+              {navData.map(item =>
+                <Route key={item.id} path={item.path} component={pages[item.page]}/>
+              )}
+              <Redirect to='/home'/>
+            </Switch>
+          </section>
+        </CSSTransition>
+      </TransitionGroup>
 
+
+
+    </Fragment>
+  }
 }
 
-export default Navbar
+export default withRouter(Navbar)
