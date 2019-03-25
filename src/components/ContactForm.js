@@ -126,7 +126,6 @@ class ContactForm extends PureComponent {
           <TextField
             fullWidth
             label="Message"
-            placeholder="Message"
             name="message"
             value={message}
             onChange={this.handleChange}

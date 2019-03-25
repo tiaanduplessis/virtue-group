@@ -21,7 +21,12 @@ class PageContainer extends PureComponent {
   static getDerivedStateFromProps(props, state) {
     const { pathname } = props.location
     const page = navData.find(item => item.path === pathname)
-    if(page.id !== state.value) return {value: page.id}
+
+    if (page && page.id !== state.value) {
+      return {value: page.id}
+    } else {
+      return {value: 0}
+    }
   }
 
   state = {
@@ -39,12 +44,15 @@ class PageContainer extends PureComponent {
     const { value } = this.state
     const { location } = this.props
 
-    const pageLoader = (
+    if( value === 0 && location.pathname !== '/home') {
+      return <Redirect to="/home" />
+    }
+
+    const page = (
       <Switch location={location}>
         {navData.map(item =>
           <Route key={item.id} path={item.path} component={pages[item.page]}/>
         )}
-        <Redirect to='/home'/>
       </Switch>
     )
 
@@ -56,7 +64,7 @@ class PageContainer extends PureComponent {
           handleChange={this.handleChange}
         />
         <Transition loc={location.key}>
-          { pageLoader }
+          { page }
         </Transition>
       </Fragment>
     )

@@ -1,20 +1,35 @@
 import React from 'react'
 
+import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Tabs, Tab } from '@material-ui/core'
 
 import Logo from './Logo'
 
-const Navbar = ({value, navData, handleChange}) => (
+const styleOverrides = theme => ({
+  selected: {
+    cursor: 'pointer',
+    pointerEvents: 'none'
+  }
+})
+
+const Navbar = ({classes, value, navData, handleChange}) => (
   <AppBar>
     <Toolbar>
       <Logo compact={true}/>
     </Toolbar>
-    <Tabs value={value} onChange={handleChange}>
-      { navData.map(page => (
-        <Tab key={page.id} label={page.name} />
+    <Tabs
+      value={value}
+      onChange={handleChange}
+    >
+      { navData.map((page, index) => (
+        <Tab
+          key={page.id}
+          label={page.name}
+          classes={{selected: classes.selected}}
+        />
       ))}
     </Tabs>
   </AppBar>
 )
 
-export default Navbar
+export default withStyles(styleOverrides)(Navbar)
