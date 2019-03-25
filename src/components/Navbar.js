@@ -1,58 +1,49 @@
-import React from 'react'
-import { NavLink, withRouter } from "react-router-dom"
+import React, { Component } from 'react'
 
-import colors from '../utils/colors'
-import { navData, linkSize, findActiveLink } from '../utils/data'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 
-const Navbar = ({location}) => {
-  const {id} = findActiveLink(location.pathname)
-  const {width, height, margin, scoreWidth, scoreThickness} = linkSize
-  const scorePosition = id * (width + 2*margin) + width/2 + margin - scoreWidth/2
+import { navData } from '../utils/navData'
 
-  return <ul className="navbar">
-    <div className="navbar-score" />
-    { navData.map(item => {
-      return <li key={item.id} className="navbar-link">
-        <NavLink to={item.path}>
-          {item.name}
-        </NavLink>
-      </li>
-    })}
-    <style global jsx>{`
-      .navbar {
-        display: flex;
-        position: relative;
-      }
-      .navbar-link {
-        width: ${width}em;
-        height: ${height}em;
-        margin: ${margin}em;
-        transition: 50ms ease-in-out;
-      }
-      .navbar-link:hover {
-        border: ${scoreThickness}em solid ${colors.primary};
-      }
-      .navbar-link a {
-        font-size: 1.1em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-      }
-      .navbar-score {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        transform: translate(${scorePosition}em, -${margin}em);
-        transition: transform 500ms ease-in-out;
-        height: ${scoreThickness}em;
-        width: ${scoreWidth}em;
-        background-color: ${colors.primary};
-        bottom: 0px;
-      }
-    `}</style>
-  </ul>
+import Logo from './Logo'
+
+class Navbar extends Component {
+
+  state = {
+    value: 0
+  }
+
+  handleChange = (props, value) => {
+    this.setState({ value })
+  }
+
+  render() {
+
+    const { value } = this.state
+
+    return <div className="navbar-wrapper">
+      <AppBar>
+        <Toolbar>
+          <Logo compact={true}/>
+        </Toolbar>
+        <Tabs value={value} onChange={this.handleChange}>
+          <Tab label="Home" />
+          <Tab label="About" />
+          <Tab label="Contact us" />
+        </Tabs>
+      </AppBar>
+
+      <style jsx>{`
+        .navbar-wrapper {
+          position: fixed;
+        }
+      `}</style>
+    </div>
+  }
+
 }
 
-export default withRouter(Navbar)
+export default Navbar
