@@ -20,6 +20,8 @@ const Navbar = ({classes, value, navData, handleChange}) => (
     <Tabs
       value={value}
       onChange={handleChange}
+      variant="scrollable"
+      scrollButtons="off"
     >
       { navData.map((page, index) => (
         <Tab
