@@ -3,19 +3,21 @@ import React from 'react'
 import background from '../images/background.svg'
 
 const Background = ({children}) => {
-  return <div className="page-holder">
+  return <div className="pageHolder">
     <div className="background"/>
-    {children}
+    <div className="pageContent">{children}</div>
     <style jsx>{`
-      .page-holder {
+      .pageHolder {
         min-width: 100vw;
         min-height: 100vh;
-        padding-top: 112px;
+      }
+      .pageContent {
+        padding-top: 110px;
       }
       .background {
         position: fixed;
         min-width: 100vw;
-        min-height: calc(100vh - 112px);
+        min-height: 100vh;
         background-image: url(${background});
         background-repeat: no-repeat;
         background-size: cover;

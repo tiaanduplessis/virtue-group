@@ -1,31 +1,17 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 
-import TextField from '@material-ui/core/TextField'
+import { Grid } from '@material-ui/core'
 
-class Contact extends PureComponent {
+import ContactForm from '../components/ContactForm'
 
-  state = {
-    name: '',
-    surname: '',
-    email: '',
-    phoneNumber: '',
-    subject: '',
-    message: ''
-  }
-
-  handleSubmit = () => {
-    console.log('submitting')
-  }
-
-  render () {
-
-    return (
-      <form>
-        <button type="submit">submit</button>
-      </form>
-
-    )
-  }
+const Contact = () => {
+  return (
+    <Grid container>
+      <Grid item xs={12} md={6}>
+        <ContactForm/>
+      </Grid>
+    </Grid>
+  )
 }
 
 export default Contact
