@@ -14,7 +14,7 @@ const styleOverrides = theme => ({
     background: theme.palette.paper
   },
   button: {
-    marginTop: 16
+    marginTop: 22
   }
 })
 
@@ -28,6 +28,7 @@ function TextMaskCustom(props) {
       }}
       mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={'\u2000'}
+      type="tel"
     />
   )
 }
@@ -103,7 +104,6 @@ class ContactForm extends PureComponent {
               <FormControl fullWidth margin="normal">
                 <InputLabel htmlFor="formatted-text-mask-input">Phone number</InputLabel>
                 <Input
-                  type="number"
                   id="formatted-text-mask-input"
                   name="phoneNumber"
                   value={phoneNumber}
@@ -130,10 +130,9 @@ class ContactForm extends PureComponent {
             value={message}
             onChange={this.handleChange}
             multiline
-            rows="4"
+            rows="2"
             rowsMax="4"
             margin="normal"
-            variant="outlined"
           />
 
           <Button classes={{root: classes.button}} fullWidth type="submit">Submit</Button>
