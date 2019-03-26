@@ -37,7 +37,7 @@ const theme = createMuiTheme({
     display: 'flex',
     padding: '0 5vw',
     '& > *': {
-      maxWidth: 2000,
+      maxWidth: 1500,
       margin: '0 auto'
     }
   }
