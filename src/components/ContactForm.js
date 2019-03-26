@@ -3,13 +3,15 @@ import React, { PureComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import {
-  Grid, Paper, TextField, Button, FormControl, InputLabel, Input
+  Grid, Card, TextField, Button, FormControl, InputLabel, Input, Typography
 } from '@material-ui/core'
+
+import MailOutlineIcon from '@material-ui/icons/MailOutline'
 
 import MaskedInput from 'react-text-mask'
 
 const styleOverrides = theme => ({
-  paper: {
+  card: {
     padding: 30,
     background: theme.palette.paper
   },
@@ -26,7 +28,7 @@ function TextMaskCustom(props) {
       ref={ref => {
         inputRef(ref ? ref.inputElement : null)
       }}
-      mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', '-', ' ', /\d/, /\d/, /\d/, /\d/]}
+      mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={'\u2000'}
       type="tel"
     />
@@ -59,7 +61,13 @@ class ContactForm extends PureComponent {
     const { classes } = this.props
 
     return (
-      <Paper classes={{root: classes.paper}}>
+      <Card classes={{root: classes.card}}>
+
+        <Typography gutterBottom variant="h5" color="primary">
+          Send us a message
+        </Typography>
+        <MailOutlineIcon/>
+
         <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
 
           <Grid container spacing={16}>
@@ -130,14 +138,14 @@ class ContactForm extends PureComponent {
             value={message}
             onChange={this.handleChange}
             multiline
-            rows="2"
+            rows="3"
             rowsMax="4"
             margin="normal"
           />
 
-          <Button classes={{root: classes.button}} fullWidth type="submit">Submit</Button>
+        <Button classes={{root: classes.button}} fullWidth type="submit">Submit</Button>
         </form>
-      </Paper>
+      </Card>
     )
   }
 }

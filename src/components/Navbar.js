@@ -6,6 +6,16 @@ import { AppBar, Toolbar, Tabs, Tab } from '@material-ui/core'
 import Logo from './Logo'
 
 const styleOverrides = theme => ({
+  appbar: {
+    ...theme.container
+  },
+  toolbar: {
+    padding: 0,
+    width: '100%'
+  },
+  tabs: {
+    width: '100%'
+  },
   selected: {
     cursor: 'pointer',
     pointerEvents: 'none'
@@ -13,8 +23,8 @@ const styleOverrides = theme => ({
 })
 
 const Navbar = ({classes, value, navData, handleChange}) => (
-  <AppBar>
-    <Toolbar>
+  <AppBar classes={{root: classes.appbar}}>
+    <Toolbar classes={{root: classes.toolbar}}>
       <Logo compact={true}/>
     </Toolbar>
     <Tabs
@@ -22,6 +32,7 @@ const Navbar = ({classes, value, navData, handleChange}) => (
       onChange={handleChange}
       variant="scrollable"
       scrollButtons="off"
+      classes={{root: classes.tabs}}
     >
       { navData.map((page, index) => (
         <Tab
