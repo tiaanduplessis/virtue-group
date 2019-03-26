@@ -14,7 +14,7 @@ const styleOverrides = theme => ({
     background: theme.palette.paper
   },
   button: {
-    marginTop: 30
+    marginTop: 16
   }
 })
 
@@ -103,6 +103,7 @@ class ContactForm extends PureComponent {
               <FormControl fullWidth margin="normal">
                 <InputLabel htmlFor="formatted-text-mask-input">Phone number</InputLabel>
                 <Input
+                  type="number"
                   id="formatted-text-mask-input"
                   name="phoneNumber"
                   value={phoneNumber}
@@ -120,7 +121,6 @@ class ContactForm extends PureComponent {
             value={subject}
             onChange={this.handleChange}
             margin="normal"
-            variant="filled"
           />
 
           <TextField
@@ -133,7 +133,7 @@ class ContactForm extends PureComponent {
             rows="4"
             rowsMax="4"
             margin="normal"
-            variant="filled"
+            variant="outlined"
           />
 
           <Button classes={{root: classes.button}} fullWidth type="submit">Submit</Button>
