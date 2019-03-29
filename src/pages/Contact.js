@@ -10,20 +10,17 @@ const styles = theme => ({
   container: {
     ...theme.container,
     paddingTop: 30
-  },
-  grid: {
-    margin: -12
   }
 })
 
 const Contact = ({classes}) => {
   return (
     <section className={classes.container}>
-      <Grid container spacing={24} classes={{container: classes.grid}}>
-        <Grid item xs={12} sm={6}>
+      <Grid container spacing={24}>
+        <Grid item xs={12}>
           <ContactForm/>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <AddressCard/>
         </Grid>
       </Grid>

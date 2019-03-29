@@ -1,30 +1,63 @@
-import React, { PureComponent } from 'react'
+import React, { Fragment } from 'react'
 
-import { withStyles } from '@material-ui/core/styles'
+import { List, ListItem, ListItemText } from '@material-ui/core'
 
-import { Paper, Typography } from '@material-ui/core'
+import ExpandingCard from './ExpandingCard'
 
-const styleOverrides = theme => ({
-  paper: {
-    padding: 30,
-    background: theme.palette.paper
-  }
-})
+import HomeIcon  from '@material-ui/icons/Home'
+import MailOutlineIcon  from '@material-ui/icons/MailOutline'
 
-class ContactForm extends PureComponent {
+const addressData = [{
+  title: 'Business Address',
+  icon: <HomeIcon/>,
+  data: [
+    'Cnr of Rooisand & Frikkie Meyer Street',
+    'Heritage Square',
+    'Kathu',
+    '8446',
+    'Northern Cape',
+    'South Africa'
+  ]
+}, {
+  title: 'Postal Address',
+  icon: <MailOutlineIcon/>,
+  data: [
+    'Postnet Suite 162',
+    'Private Bag X508',
+    'Heritage Square',
+    'Kathu',
+    '8446',
+    'Northern Cape',
+    'South Africa'
+  ]
+}]
 
-  render () {
 
-    const { classes } = this.props
-
-    return (
-      <Paper classes={{root: classes.paper}}>
-        <Typography gutterBottom variant="h5" color="primary">
-          Business Address
-        </Typography>
-      </Paper>
-    )
-  }
+const liStyle = {
+  padding: '4px 0'
 }
 
-export default withStyles(styleOverrides)(ContactForm)
+const AddressCard = () => (
+  <Fragment>
+    {addressData.map(address => (
+      <ExpandingCard
+        key={address.title}
+        icon={address.icon}
+        title={address.title}
+      >
+        <List dense>
+          {address.data.map(line => (
+            <ListItem key={line} style={liStyle}>
+              <ListItemText>
+                {line}
+              </ListItemText>
+            </ListItem>
+          ))}
+        </List>
+      </ExpandingCard>
+    ))}
+  </Fragment>
+)
+
+
+export default AddressCard

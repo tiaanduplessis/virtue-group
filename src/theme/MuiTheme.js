@@ -18,6 +18,9 @@ const theme = createMuiTheme({
     },
     paper: 'rgba(255, 255, 255, 0.7)'
   },
+  spacing: {
+    unit: 10
+  },
   typography: {
     useNextVariants: true,
     fontFamily: [
@@ -35,7 +38,7 @@ const theme = createMuiTheme({
   },
   container: {
     display: 'flex',
-    padding: '0 5vw',
+    padding: '0 2vw',
     '& > *': {
       maxWidth: 1500,
       margin: '0 auto'

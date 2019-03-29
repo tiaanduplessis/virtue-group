@@ -10,12 +10,12 @@ const styleOverrides = theme => ({
     ...theme.container
   },
   toolbar: {
-    padding: 0,
-    margin: 0,
+    padding: '0 12px',
     width: '100%'
   },
   tabs: {
-    width: '100%'
+    width: '100%',
+    padding: '0 12px'
   },
   selected: {
     cursor: 'pointer',
