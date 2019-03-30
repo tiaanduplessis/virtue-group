@@ -52,27 +52,32 @@ class ContactForm extends PureComponent {
     this.setState({[name]: value})
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
     setTimeout(() => {
       this.setState({isLoading: true})
-      this.setState({isLoading: false})
     }, 200)
 
-    axios.post('https://virtue-mailer.herokuapp.com/send', {
-      emailAddress: "pdut8901@gmail.com",
-    	phoneNumber: "083 660 2431",
-    	name: "Pieter",
-    	subject: "Test subject",
-    	surname: "Du Toit",
-    	message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    })
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    try {
+      const res = await axios.post('https://virtue-mailer.herokuapp.com/send', {
+        emailAddress: "pdut8901@gmail.com",
+      	phoneNumber: "083 660 2431",
+      	name: "Pieter",
+      	subject: "Test subject",
+      	surname: "Du Toit",
+      	message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      })
+
+      if (res.status !== 200) {
+        throw new Error(`Invalid response code ${res.status}`)
+      }
+      this.setState({isLoading: false})
+      console.log({res})
+
+    } catch(err) {
+      console.log({err})
+      this.setState({isLoading: false})
+    }
   }
 
   render () {
@@ -83,7 +88,7 @@ class ContactForm extends PureComponent {
     const form = (
       <form onSubmit={this.handleSubmit} noValidate autoComplete="off" style={styles.form}>
         <Grid container spacing={16}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               name="name"
@@ -96,7 +101,7 @@ class ContactForm extends PureComponent {
             />
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               name="surname"
@@ -109,7 +114,7 @@ class ContactForm extends PureComponent {
             />
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               label="Email"
@@ -123,7 +128,7 @@ class ContactForm extends PureComponent {
             />
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal">
               <InputLabel htmlFor="formatted-text-mask-input">Phone number</InputLabel>
               <Input
