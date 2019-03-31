@@ -26,7 +26,7 @@ const styleOverrides = theme => ({
 const Navbar = ({classes, value, navData, handleChange}) => (
   <AppBar classes={{root: classes.appbar}}>
     <Toolbar classes={{root: classes.toolbar}}>
-      <Logo compact={true}/>
+      <Logo compact/>
     </Toolbar>
     <Tabs
       value={value}

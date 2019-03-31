@@ -39,8 +39,8 @@ class ContactForm extends PureComponent {
 
   state = {
     name: '',
-    surname: '',
-    email: '',
+    company: '',
+    emailAddress: '',
     phoneNumber: '',
     subject: '',
     message: '',
@@ -58,14 +58,11 @@ class ContactForm extends PureComponent {
       this.setState({isLoading: true})
     }, 200)
 
+    const { name, company, emailAddress, phoneNumber, subject, message } = this.state
+
     try {
       const res = await axios.post('https://virtue-mailer.herokuapp.com/send', {
-        emailAddress: "pdut8901@gmail.com",
-      	phoneNumber: "083 660 2431",
-      	name: "Pieter",
-      	subject: "Test subject",
-      	surname: "Du Toit",
-      	message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        emailAddress, phoneNumber, name, company, subject, message
       })
 
       if (res.status !== 200) {
@@ -82,7 +79,7 @@ class ContactForm extends PureComponent {
 
   render () {
     const {
-      name, surname, email, phoneNumber, subject, message, isLoading
+      name, company, emailAddress, phoneNumber, subject, message, isLoading
     } = this.state
 
     const form = (
@@ -98,19 +95,7 @@ class ContactForm extends PureComponent {
               onChange={this.handleChange}
               margin="normal"
               disabled={isLoading}
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              name="surname"
-              label="Surname"
-              value={surname}
-              type="text"
-              onChange={this.handleChange}
-              margin="normal"
-              disabled={isLoading}
+              required
             />
           </Grid>
 
@@ -119,12 +104,13 @@ class ContactForm extends PureComponent {
               fullWidth
               label="Email"
               type="email"
-              name="email"
-              value={email}
+              name="emailAddress"
+              value={emailAddress}
               autoComplete="email"
               margin="normal"
               onChange={this.handleChange}
               disabled={isLoading}
+              required
             />
           </Grid>
 
@@ -140,6 +126,19 @@ class ContactForm extends PureComponent {
                 disabled={isLoading}
               />
             </FormControl>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              name="company"
+              label="Company"
+              value={company}
+              type="text"
+              onChange={this.handleChange}
+              margin="normal"
+              disabled={isLoading}
+            />
           </Grid>
         </Grid>
 
@@ -164,6 +163,7 @@ class ContactForm extends PureComponent {
           rowsMax="4"
           margin="normal"
           disabled={isLoading}
+          required
         />
 
       <Button style={styles.button} fullWidth type="submit" disabled={isLoading}>
