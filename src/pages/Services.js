@@ -13,11 +13,18 @@ function TabContainer({ children, dir }) {
 
 class FullWidthTabs extends Component {
   state = {
-    value: 0
+    value: 0,
+    index: 0
   }
 
   handleChange = (props, value) => {
     this.setState({ value })
+  }
+
+  handleChangeIndex = (props, index) => {
+    console.log('here')
+    console.log(props, index)
+    this.setState({index})
   }
 
   render() {
@@ -42,7 +49,7 @@ class FullWidthTabs extends Component {
         <SwipeableViews
           axis={'x'}
           index={value}
-          onChangeIndex={this.handleChange}
+          onChangeIndex={this.handleChangeIndex}
         >
           <TabContainer dir={'x-reverse'}>Item One</TabContainer>
           <TabContainer dir={'x-reverse'}>Item Two</TabContainer>
