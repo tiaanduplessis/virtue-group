@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
-import axios from 'axios'
 import MaskedInput from 'react-text-mask'
+import axios from 'axios'
+import { validateField, validateForm } from '../utils/validation'
 
 import {
   Grid, TextField, Button, FormControl, InputLabel, Input, CircularProgress
@@ -44,18 +45,40 @@ class ContactForm extends PureComponent {
     phoneNumber: '',
     subject: '',
     message: '',
+    validationErrors: {},
+    previousErrors: [],
     isLoading: false
   }
 
   handleChange = event => {
+    const { previousErrors, validationErrors } = this.state
     const { name , value } = event.target
-    this.setState({[name]: value})
+    let errors = Object.assign({}, validationErrors)
+
+    if (previousErrors.includes(name)) {
+      const newErrors = validateField(event.target)
+
+      if (Object.entries(newErrors).length) {
+        errors = Object.assign(validationErrors, newErrors)
+      } else {
+        delete errors[name]
+      }
+    }
+    this.setState({[name]: value, validationErrors: errors})
   }
 
   handleSubmit = async event => {
     event.preventDefault()
+    const validationErrors = validateForm(event.target)
+    const errorsArr = Object.entries(validationErrors)
+
+    if (errorsArr.length) {
+      const previousErrors = errorsArr.map(([key]) => key)
+      return this.setState({validationErrors, previousErrors})
+    }
+
     setTimeout(() => {
-      this.setState({isLoading: true})
+      this.setState({isLoading: true, validationErrors: {}})
     }, 200)
 
     const { name, company, emailAddress, phoneNumber, subject, message } = this.state
@@ -79,7 +102,8 @@ class ContactForm extends PureComponent {
 
   render () {
     const {
-      name, company, emailAddress, phoneNumber, subject, message, isLoading
+      name, company, emailAddress, phoneNumber, subject, message, isLoading,
+      validationErrors
     } = this.state
 
     const form = (
@@ -96,6 +120,8 @@ class ContactForm extends PureComponent {
               margin="normal"
               disabled={isLoading}
               required
+              helperText={validationErrors.name || null}
+              error={!!validationErrors.name}
             />
           </Grid>
 
@@ -111,6 +137,8 @@ class ContactForm extends PureComponent {
               onChange={this.handleChange}
               disabled={isLoading}
               required
+              helperText={validationErrors.emailAddress || null}
+              error={!!validationErrors.emailAddress}
             />
           </Grid>
 
@@ -164,6 +192,8 @@ class ContactForm extends PureComponent {
           margin="normal"
           disabled={isLoading}
           required
+          helperText={validationErrors.message || null}
+          error={!!validationErrors.message}
         />
 
       <Button style={styles.button} fullWidth type="submit" disabled={isLoading}>

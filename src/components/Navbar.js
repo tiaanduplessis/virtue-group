@@ -35,7 +35,7 @@ const Navbar = ({classes, value, navData, handleChange}) => (
       scrollButtons="off"
       classes={{root: classes.tabs}}
     >
-      { navData.map((page, index) => (
+      {navData.map((page, index) => (
         <Tab
           key={page.id}
           label={page.name}

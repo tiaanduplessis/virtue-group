@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import {
   ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography,
-  Avatar, Toolbar,
+  Avatar, Toolbar
 } from '@material-ui/core'
 
 const styleOverrides = theme => ({

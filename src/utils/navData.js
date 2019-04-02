@@ -13,33 +13,42 @@ const navData = [
   },
   {
     id: 2,
+    name: 'Services',
+    path: '/services',
+    page: 'Services'
+  },
+  {
+    id: 3,
+    name: 'Contact Us',
+    path: '/contact-us',
+    page: 'Contact'
+  }
+]
+
+const servicePages = [
+  {
+    id: 0,
     name: 'Electrical',
     path: '/electrical',
     page: 'Electrical'
   },
   {
-    id: 3,
+    id: 1,
     name: 'Plumbing',
     path: '/plumbing',
     page: 'Plumbing'
   },
   {
-    id: 4,
+    id: 2,
     name: 'Maintenance',
     path: '/maintenance',
     page: 'Maintenance'
   },
   {
-    id: 5,
+    id: 3,
     name: 'Construction',
     path: '/construction',
     page: 'Construction'
-  },
-  {
-    id: 6,
-    name: 'Contact Us',
-    path: '/contact-us',
-    page: 'Contact'
   }
 ]
 
@@ -55,4 +64,6 @@ const findActiveLink = path => {
   return navData.find(item => item.path === path)
 }
 
-export { navData, linkSize, findActiveLink }
+export {
+  navData, linkSize, findActiveLink, servicePages
+}

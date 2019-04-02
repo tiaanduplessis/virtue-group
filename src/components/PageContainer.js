@@ -7,15 +7,12 @@ import Navbar from './Navbar'
 
 import Home from '../pages/Home'
 import About from '../pages/About'
-import Electrical from '../pages/Electrical'
-import Plumbing from '../pages/Plumbing'
-import Maintenance from '../pages/Maintenance'
-import Construction from '../pages/Construction'
+import Services from '../pages/Services'
 import Contact from '../pages/Contact'
 
 import { navData } from '../utils/navData'
 
-const pages = { Home, About, Electrical, Plumbing, Maintenance, Construction, Contact }
+const pages = { Home, About, Services, Contact }
 
 class PageContainer extends PureComponent {
 
