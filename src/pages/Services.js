@@ -22,7 +22,7 @@ class FullWidthTabs extends Component {
   }
 
   handleChangeIndex = (index, indexLatest) => {
-    this.setState({value: indexLatest})
+    this.setState({value: index})
   }
 
   render() {
