@@ -17,6 +17,7 @@ const pages = {
 const PageContainer = ({match}) => {
   const { page } = match.params
   const pageFound = Object.keys(pages).includes(page)
+  
   return pageFound ? pages[page] : <Redirect to="/home"/>
 }
 
