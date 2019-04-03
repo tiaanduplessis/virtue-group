@@ -13,26 +13,18 @@ import Background from './components/Background'
 function getPageIndex(pathname) {
   const urlPage = pathname.split("/")[1]
   const pageValue = navData.find(page => page.path === `/${urlPage}`)
-  return pageValue ? pageValue.id : null
+  return pageValue ? pageValue.id : false
 }
 
 class App extends PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     const value = getPageIndex(props.location.pathname)
-
-    if (value && value !== state.value) {
-      return {value}
-    } else {
-      return {value: 0}
-    }
+    return value >= 0 ? {value} : {value: 0}
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: 0
-    }
+  state = {
+    value: 0
   }
 
   handleChange = (props, value) => {
