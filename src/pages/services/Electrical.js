@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Electrical = () => {
+const Electrical = (props) => {
+  console.log({props})
   return <div>Electrical Page</div>
 }
 
