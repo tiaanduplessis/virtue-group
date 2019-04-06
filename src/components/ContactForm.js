@@ -10,7 +10,6 @@ import {
 import SendIcon from '@material-ui/icons/Send'
 import ExpandingCard from './ExpandingCard'
 
-
 const styles = {
   form: {
     width: '100%'

@@ -5,10 +5,13 @@ import windowSize from 'react-window-size'
 import { withStyles } from '@material-ui/core/styles'
 
 import {
-  AppBar, Tabs, Tab, SwipeableDrawer, Button, List, ListItem, ListItemText
+  AppBar, Tabs, Tab, SwipeableDrawer, IconButton, List, ListItem, ListItemText, Typography
 } from '@material-ui/core'
 
+import MenuIcon from '@material-ui/icons/Menu'
 import Logo from './Logo'
+
+const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
 
 const styleOverrides = theme => ({
   appbar: {
@@ -34,7 +37,21 @@ const styleOverrides = theme => ({
     pointerEvents: 'none'
   },
   list: {
-    minWidth: 200
+    minWidth: 200,
+  },
+  iconButton: {
+    color: theme.color.white
+  },
+  mobileNavbar: {
+    width: '100vw',
+    display: 'flex',
+    alignItems: 'center',
+    height: 48
+  },
+  title: {
+    color: theme.color.white,
+    fontWeight: 400,
+    textTransform: 'capitalize'
   }
 })
 
@@ -90,15 +107,24 @@ class Navbar extends PureComponent {
       </div>
     )
 
-
     const mobileNav = (
-      <div style={{height: 48}}>
-        <Button onClick={this.toggleDrawer}>Open Nav</Button>
-          <SwipeableDrawer
-            open={open}
-            onClose={this.toggleDrawer}
-            onOpen={this.toggleDrawer}
-          >
+      <div className={classes.mobileNavbar}>
+        <IconButton
+          onClick={this.toggleDrawer}
+          classes={{root: classes.iconButton}}
+        > <MenuIcon/>
+        </IconButton>
+        <Typography classes={{root: classes.title}} variant="h6">
+          {navData[value].name}
+        </Typography>
+
+        <SwipeableDrawer
+          open={open}
+          onClose={this.toggleDrawer}
+          onOpen={this.toggleDrawer}
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
+        >
           <div
             tabIndex={0}
             role="button"
