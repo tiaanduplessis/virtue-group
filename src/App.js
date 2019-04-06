@@ -54,7 +54,7 @@ class App extends PureComponent {
             <Route exact path='/about' component={About}/>
             <Route exact path='/services' component={Services}/>
             <Route exact path='/services/:service' component={Services}/>
-            <Route exact path='/contact-us' component={Contact}/>
+            <Route exact path='/contact' component={Contact}/>
             <Redirect to="/home"/>
           </Switch>
         </Background>

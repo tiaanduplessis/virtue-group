@@ -20,7 +20,7 @@ const navData = [
   {
     id: 3,
     name: 'Contact',
-    path: '/contact-us',
+    path: '/contact',
     page: 'Contact'
   }
 ]
