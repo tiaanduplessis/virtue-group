@@ -14,10 +14,13 @@ const styleOverrides = theme => ({
     width: '100%'
   },
   tabs: {
-    width: '100%',
+    width: '100%'
   },
-  label: {
-    letterSpacing: 2
+  indicator: {
+    height: 3
+  },
+  labelContainer: {
+    padding: '12px 0'
   },
   selected: {
     cursor: 'pointer',
@@ -34,7 +37,10 @@ const Navbar = ({classes, value, navData, handleChange}) => (
       variant="fullWidth"
       value={value}
       onChange={handleChange}
-      classes={{ root: classes.tabs }}
+      classes={{
+        root: classes.tabs,
+        indicator: classes.indicator
+      }}
     >
       {navData.map((page, index) => (
         <Tab
@@ -42,7 +48,7 @@ const Navbar = ({classes, value, navData, handleChange}) => (
           label={page.name}
           classes={{
             root: classes.tab,
-            label: classes.label,
+            labelContainer: classes.labelContainer,
             selected: classes.selected
           }}
         />
