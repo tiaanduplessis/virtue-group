@@ -1,26 +1,30 @@
 import React, { PureComponent } from 'react'
-import { Route, withRouter } from "react-router-dom"
+import { Switch, Redirect, Route, withRouter } from "react-router-dom"
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import theme from './theme/MuiTheme'
 
 import { navData } from './utils/navData'
 
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/services/'
+import Contact from './pages/Contact'
+
 import Navbar from './components//Navbar'
-import PageContainer from './components/PageContainer'
 import Background from './components/Background'
 
 function getPageIndex(pathname) {
   const urlPage = pathname.split("/")[1]
   const pageValue = navData.find(page => page.path === `/${urlPage}`)
-  return pageValue ? pageValue.id : false
+  return pageValue ? pageValue.id : null
 }
 
 class App extends PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     const value = getPageIndex(props.location.pathname)
-    return value >= 0 ? {value} : {value: 0}
+    return !!value ? {value} : {value: 0}
   }
 
   state = {
@@ -45,7 +49,14 @@ class App extends PureComponent {
             navData={navData}
             handleChange={this.handleChange}
           />
-          <Route path='/:page' component={PageContainer}/>
+          <Switch>
+            <Route exact path='/home' component={Home}/>
+            <Route exact path='/about' component={About}/>
+            <Route exact path='/services' component={Services}/>
+            <Route exact path='/services/:service' component={Services}/>
+            <Route exact path='/contact-us' component={Contact}/>
+            <Redirect to="/home"/>
+          </Switch>
         </Background>
 
         <style global jsx>{`

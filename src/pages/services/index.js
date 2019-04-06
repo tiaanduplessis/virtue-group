@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import SwipeableViews from 'react-swipeable-views'
-import { Switch, Route, Redirect, withRouter } from "react-router-dom"
+import { withRouter, Redirect } from "react-router-dom"
 
+import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Tabs, Tab } from '@material-ui/core/'
 
 import Electrical from './Electrical'
@@ -9,45 +10,75 @@ import Construction from './Construction'
 import Plumbing from './Plumbing'
 import Maintenance from './Maintenance'
 
-import { servicePages } from '../../utils/navData'
+const pages = ['electrical', 'construction', 'plumbing', 'maintenance']
 
-const pages = { Electrical, Construction, Plumbing, Maintenance }
+const styleOverrides = theme => ({
+  appbar: {
+    ...theme.container
+  },
+  tabs: {
+    width: '100%',
+    padding: '0 12px'
+  }
+})
 
-class Services extends Component {
-  state = {
-    value: 0,
-    index: 0
+class Services extends PureComponent {
+
+  static getDerivedStateFromProps(props, state) {
+    const { service } = props.match.params
+    const value = pages.indexOf(service)
+
+    return value !== state.value ? {value} : null
   }
 
-  handleChange = (props, value) => {
+  state = {
+    value: 0
+  }
+
+  handleChange = (event, value) => {
+    const { innerText } = event.target
     this.setState({ value }, () => {
-      const newRoute = servicePages[value].path
-      this.props.history.push(`/services${newRoute}`)
+      this.redirect(innerText.toLowerCase())
     })
   }
 
   handleChangeIndex = index => {
-    this.setState({value: index})
+    const service = pages[index]
+    this.setState({value: index}, () => {
+      this.redirect(service)
+    })
+  }
+
+  redirect = service => {
+    const { history } = this.props
+    history.push(`/services/${service}`)
   }
 
   render() {
-
     const { value } = this.state
-    const { match } = this.props
+    const { classes } = this.props
 
-    return (
-      <div>
-        <AppBar position="static" color="default">
+    return value === -1 ? <Redirect to="/services/electrical" /> : (
+
+      <Fragment>
+        <AppBar
+          position="static"
+          color="default"
+          classes={{root: classes.appbar}}
+        >
           <Tabs
             variant="scrollable"
             value={value}
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
+            classes={{root: classes.tabs}}
+            scrollButtons="off"
           >
-           {servicePages.map(page => (
-             <Tab key={page.name} label={page.name} />
-           ))}
+            <Tab label="Electrical" />
+            <Tab label="Construction" />
+            <Tab label="Plumbing" />
+            <Tab label="Maintenance" />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -55,19 +86,16 @@ class Services extends Component {
           index={value}
           onChangeIndex={this.handleChangeIndex}
         >
-          {servicePages.map(page => (
-            <div key={page.name} dir={'x-reverse'}>
-              <Switch>
-                {servicePages.map(item =>
-                  <Route key={item.id} path={`services/electrical`} component={pages[Electrical]}/>
-                )}
-              </Switch>
-            </div>
-          ))}
+          <Electrical/>
+          <Construction/>
+          <Plumbing/>
+          <Maintenance/>
         </SwipeableViews>
-      </div>
+      </Fragment>
     )
   }
 }
 
-export default withRouter(Services)
+export default withRouter(
+  withStyles(styleOverrides)(Services)
+)
