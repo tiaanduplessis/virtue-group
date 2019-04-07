@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import SwipeableViews from 'react-swipeable-views'
-import { withRouter, Redirect } from "react-router-dom"
+import { withRouter, Redirect } from 'react-router-dom'
+import windowSize from 'react-window-size'
 
 import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Tabs, Tab } from '@material-ui/core/'
@@ -17,8 +18,7 @@ const styleOverrides = theme => ({
     ...theme.container
   },
   tabs: {
-    width: '100%',
-    padding: '0 12px'
+    width: '100%'
   }
 })
 
@@ -56,7 +56,8 @@ class Services extends PureComponent {
 
   render() {
     const { value } = this.state
-    const { classes } = this.props
+    const { classes, windowWidth } = this.props
+    const isMobile = windowWidth < 760
 
     return value === -1 ? <Redirect to="/services/electrical" /> : (
 
@@ -64,7 +65,7 @@ class Services extends PureComponent {
         <AppBar
           position="static"
           color="default"
-          classes={{root: classes.appbar}}
+          classes={{root: !isMobile ? classes.appbar : null}}
         >
           <Tabs
             variant="scrollable"
@@ -96,6 +97,6 @@ class Services extends PureComponent {
   }
 }
 
-export default withRouter(
+export default withRouter(windowSize(
   withStyles(styleOverrides)(Services)
-)
+))

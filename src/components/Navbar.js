@@ -5,11 +5,24 @@ import windowSize from 'react-window-size'
 import { withStyles } from '@material-ui/core/styles'
 
 import {
-  AppBar, Tabs, Tab, SwipeableDrawer, IconButton, List, ListItem, ListItemText, Typography
+  AppBar, Tabs, Tab, SwipeableDrawer, Button,
+  List, ListItem, ListItemText, Typography, ListItemIcon
 } from '@material-ui/core'
 
 import MenuIcon from '@material-ui/icons/Menu'
+import HomeIcon from '@material-ui/icons/Home'
+import PersonIcon from '@material-ui/icons/Person'
+import BuildIcon from '@material-ui/icons/Build'
+import EmailIcon from '@material-ui/icons/Email'
+
 import Logo from './Logo'
+
+const icon = {
+  Home: <HomeIcon/>,
+  About: <PersonIcon/>,
+  Services: <BuildIcon/>,
+  Contact: <EmailIcon/>
+}
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
 
@@ -39,6 +52,9 @@ const styleOverrides = theme => ({
   list: {
     minWidth: 200,
   },
+  selectedLink: {
+    fontWeight: 700
+  },
   iconButton: {
     color: theme.color.white
   },
@@ -51,7 +67,8 @@ const styleOverrides = theme => ({
   title: {
     color: theme.color.white,
     fontWeight: 400,
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    paddingLeft: 20
   }
 })
 
@@ -69,6 +86,7 @@ class Navbar extends PureComponent {
     const { open } = this.state
     const { classes, value, navData, handleChange, windowWidth } = this.props
     const isMobile = windowWidth < 760
+    const selectedName = navData[value].name
 
     const desktopNav = (
       <Tabs
@@ -97,11 +115,20 @@ class Navbar extends PureComponent {
       <div className={classes.list}>
         <List>
           {navData.map(item => (
-            <ListItem button key={item.id}>
-              <Link to={item.path}>
-                <ListItemText>{item.name}</ListItemText>
-              </Link>
-            </ListItem>
+            <Link to={item.path}>
+              <ListItem button key={item.id}>
+                <ListItemIcon>{icon[item.name]}</ListItemIcon>
+                <ListItemText>
+                  <Typography
+                    classes={{
+                      root: item.name===selectedName ? classes.selectedLink : null
+                    }}
+                    variant="subtitle1"
+                  > {item.name}
+                  </Typography>
+                </ListItemText>
+              </ListItem>
+            </Link>
           ))}
         </List>
       </div>
@@ -109,20 +136,22 @@ class Navbar extends PureComponent {
 
     const mobileNav = (
       <div className={classes.mobileNavbar}>
-        <IconButton
+        <Button
           onClick={this.toggleDrawer}
           classes={{root: classes.iconButton}}
-        > <MenuIcon/>
-        </IconButton>
-        <Typography classes={{root: classes.title}} variant="h6">
-          {navData[value].name}
-        </Typography>
+        >
+          <MenuIcon/>
+          <Typography classes={{root: classes.title}} variant="h6">
+            {selectedName}
+          </Typography>
+        </Button>
+
 
         <SwipeableDrawer
           open={open}
           onClose={this.toggleDrawer}
           onOpen={this.toggleDrawer}
-          disableBackdropTransition={!iOS}
+          disableBackdropTransition={!iOS && isMobile}
           disableDiscovery={iOS}
         >
           <div
@@ -138,7 +167,7 @@ class Navbar extends PureComponent {
     )
 
     return (
-      <AppBar classes={{root: classes.appbar}}>
+      <AppBar classes={{root: !isMobile ? classes.appbar : null}}>
         <div className={classes.toolbar}>
           <Logo compact/>
         </div>
