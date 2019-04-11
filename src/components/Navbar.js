@@ -115,7 +115,7 @@ class Navbar extends PureComponent {
       <div className={classes.list}>
         <List>
           {navData.map(item => (
-            <Link to={item.path}>
+            <Link key={item.name} to={item.path}>
               <ListItem button key={item.id}>
                 <ListItemIcon>{icon[item.name]}</ListItemIcon>
                 <ListItemText>

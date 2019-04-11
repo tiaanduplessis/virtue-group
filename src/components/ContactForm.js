@@ -100,6 +100,9 @@ class ContactForm extends PureComponent {
   }
 
   render () {
+
+    console.log(this.state.phoneNumber)
+
     const {
       name, company, emailAddress, phoneNumber, subject, message, isLoading,
       validationErrors
