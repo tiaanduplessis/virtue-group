@@ -94,7 +94,6 @@ class Navbar extends PureComponent {
 
     const desktopNav = (
       <Tabs
-        variant="fullWidth"
         value={value}
         onChange={handleChange}
         classes={{

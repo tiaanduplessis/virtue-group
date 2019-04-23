@@ -58,7 +58,7 @@ const ServicesBar = ({classes}) =>  (
       </Grid>
 
       {servicesData.map(service => (
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={6} sm={3}>
           <Link to={`/services/${service.name}`} className={classes.item}>
             <img
               src={icons[service.name]}
