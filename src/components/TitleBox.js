@@ -9,8 +9,8 @@ const styleOverrides = theme => ({
     display: 'inline-block'
   },
   title: {
-    color: theme.colors.white,
-    fontWeight: 500,
+    color: theme.palette.primary.dark,
+    fontWeight: 600,
     fontSize: '1.6em',
     textTransform: 'uppercase',
     letterSpacing: 2

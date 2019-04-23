@@ -30,17 +30,18 @@ const styleOverrides = theme => ({
     }
   },
   subtitle: {
-    fontWeight: 400,
+    fontWeight: 500,
     fontSize: '1.3em',
     textAlign: 'center',
     textTransform: 'capitalize',
     marginTop: theme.spacing.units * 3,
-    color: theme.colors.white,
+    color: theme.palette.primary.main,
     transition: '100ms linear'
   },
   icon: {
     width: '70%',
-    maxWidth: 140,
+    minWidth: 100,
+    maxWidth: 160,
     margin: '0 auto'
   }
 })
