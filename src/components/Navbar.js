@@ -28,7 +28,11 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
 
 const styleOverrides = theme => ({
   appbar: {
-    ...theme.container
+    ...theme.container,
+    backgroundColor: theme.palette.primary.dark
+  },
+  mobileAppbar: {
+    backgroundColor: theme.palette.primary.dark
   },
   toolbar: {
     padding: '12px',
@@ -167,7 +171,7 @@ class Navbar extends PureComponent {
     )
 
     return (
-      <AppBar classes={{root: !isMobile ? classes.appbar : null}}>
+      <AppBar classes={{root: !isMobile ? classes.appbar : classes.mobileAppbar}}>
         <div className={classes.toolbar}>
           <Logo compact/>
         </div>
