@@ -45,7 +45,7 @@ const Logo = ({ location, size, compact, theme }) => {
           font-weight: 600;
         }
         .logo-center span:last-of-type {
-          color: ${theme.color.white};
+          color: ${theme.colors.white};
           text-transform: lowercase;
           font-size: inherit;
           transform: translateY(-.17em);

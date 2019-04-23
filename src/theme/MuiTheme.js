@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
-  color : {
+  colors : {
     white: '#FFF',
     black: '#000',
     grey: '#747474'
@@ -20,7 +20,7 @@ const theme = createMuiTheme({
     paper: 'rgba(255, 255, 255, 0.7)'
   },
   spacing: {
-    unit: 10
+    units: 10
   },
   typography: {
     useNextVariants: true,

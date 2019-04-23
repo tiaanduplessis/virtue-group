@@ -56,7 +56,7 @@ const styleOverrides = theme => ({
     fontWeight: 700
   },
   iconButton: {
-    color: theme.color.white
+    color: theme.colors.white
   },
   mobileNavbar: {
     width: '100vw',
@@ -65,7 +65,7 @@ const styleOverrides = theme => ({
     height: 48
   },
   title: {
-    color: theme.color.white,
+    color: theme.colors.white,
     fontWeight: 400,
     textTransform: 'capitalize',
     paddingLeft: 20

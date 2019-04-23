@@ -60,10 +60,6 @@ const linkSize = {
   scoreThickness: .2
 }
 
-const findActiveLink = path => {
-  return navData.find(item => item.path === path)
-}
-
 export {
-  navData, linkSize, findActiveLink, servicePages
+  navData, linkSize, servicePages
 }
