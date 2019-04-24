@@ -18,7 +18,8 @@ const styleOverrides = theme => ({
   container: {
     ...theme.container,
     paddingTop: theme.spacing.units * 2,
-    paddingBottom: theme.spacing.units * 2
+    paddingBottom: theme.spacing.units * 2,
+    height: '200vh'
   },
   item: {
     display: 'flex',

@@ -28,7 +28,10 @@ const Logo = ({ location, size, compact, theme }) => {
         .logo {
           display: flex;
           flex-direction: column;
-          pointer-events: ${location.pathname === '/home' ? 'none' : 'auto'}
+          pointer-events: ${location.pathname === '/home' ? 'none' : 'auto'};
+        }
+        .logo:hover {
+          text-decoration: none;
         }
         .logo-top {
           transform: translateY(.6em);

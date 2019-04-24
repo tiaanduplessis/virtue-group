@@ -82,18 +82,50 @@ const styleOverrides = theme => ({
   }
 })
 
+const active = {
+  visibility: 'visible',
+  transition: 'all 200ms ease-in'
+}
+
+const hidden = {
+  visibility: 'hidden',
+  transition: 'all 200ms ease-out',
+  transform: 'translate(0, -100%)'
+}
+
 class Navbar extends PureComponent {
 
   state = {
-    open: false
+    visible: true,
+    listVisible: false,
+    showNavbar: true,
+    scrollPos: 0
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll)
+  }
+
+  // https://medium.com/@glweems/react-auto-hide-on-scroll-navbar-617a6749a96
+  handleScroll = () => {
+    const { scrollPos } = this.state
+    const { top } = document.body.getBoundingClientRect()
+    this.setState({
+      scrollPos: top,
+      showNavbar: top > scrollPos
+    })
   }
 
   toggleDrawer = () => {
-    this.setState({open: !this.state.open})
+    this.setState({listVisible: !this.state.listVisible})
   }
 
   render() {
-    const { open } = this.state
+    const { listVisible, showNavbar } = this.state
     const { classes, value, navData, handleChange, windowWidth } = this.props
     const isMobile = windowWidth < 760
     const selectedName = navData[value].name
@@ -157,7 +189,7 @@ class Navbar extends PureComponent {
         </Button>
 
         <SwipeableDrawer
-          open={open}
+          open={listVisible}
           onClose={this.toggleDrawer}
           onOpen={this.toggleDrawer}
           disableBackdropTransition={!iOS && isMobile}
@@ -176,7 +208,10 @@ class Navbar extends PureComponent {
     )
 
     return (
-      <AppBar classes={{root: isMobile ? classes.mobileAppbar : classes.appbar}}>
+      <AppBar
+        classes={{root: isMobile ? classes.mobileAppbar : classes.appbar}}
+        style={showNavbar ? active : hidden}
+      >
         <div className={classes.toolbar}>
           {isMobile && mobileNav}
           <Logo compact size={isMobile ? 1.8 : 2.2}/>
