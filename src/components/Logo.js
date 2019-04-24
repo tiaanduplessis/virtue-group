@@ -8,22 +8,23 @@ const Logo = ({ location, size, compact, theme }) => {
 
   const LogoLink = props => <RouterLink to="/home" {...props} />
 
-  return <Link to="/" component={LogoLink}  className="logo">
-    {!compact && <div className="logo-top">the</div>}
+  return (
+    <Link to="/" component={LogoLink}  className="logo">
+      {!compact && <div className="logo-top">the</div>}
 
-    <div className="logo-center">
-      <span>Virtue</span>
-      <span>Group</span>
-    </div>
+      <div className="logo-center">
+        <span>Virtue</span>
+        <span>Group</span>
+      </div>
 
-    {!compact && (
-      <Fragment>
-        <span className="hr" />
-        <div className="logo-bottom">of companies</div>
-      </Fragment>
-    )}
+      {!compact && (
+        <Fragment>
+          <span className="hr" />
+          <div className="logo-bottom">of companies</div>
+        </Fragment>
+      )}
 
-    <style global jsx>{`
+      <style global jsx>{`
         .logo {
           display: flex;
           flex-direction: column;
@@ -61,14 +62,15 @@ const Logo = ({ location, size, compact, theme }) => {
           color: ${theme.palette.secondary.main};
           font-size: ${size/3}em;
         }
-    `}</style>
-  </Link>
+      `}</style>
+    </Link>
+  )
 }
 
 
 
 Logo.defaultProps = {
-  size: 2 ,
+  size: 2,
   compact: false
 }
 

@@ -12,7 +12,7 @@ const Background = ({children}) => {
         min-height: 100vh;
       }
       .pageContent {
-        padding-top: 110px;
+        padding-top: 72px;
       }
       .background {
         position: fixed;

@@ -5,8 +5,8 @@ import windowSize from 'react-window-size'
 import { withStyles } from '@material-ui/core/styles'
 
 import {
-  AppBar, Tabs, Tab, SwipeableDrawer, Button,
-  List, ListItem, ListItemText, Typography, ListItemIcon
+  AppBar, Tabs, Tab, SwipeableDrawer, Button, List, ListItem,
+  ListItemText, Typography, ListItemIcon
 } from '@material-ui/core'
 
 import MenuIcon from '@material-ui/icons/Menu'
@@ -32,15 +32,21 @@ const styleOverrides = theme => ({
     backgroundColor: theme.palette.primary.dark
   },
   mobileAppbar: {
+    paddingRight: 20,
     backgroundColor: theme.palette.primary.dark
   },
   toolbar: {
-    padding: '12px',
-    width: '100%'
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    minHeight: 72
   },
   tabs: {
-    width: '100%',
     padding: '0 12px'
+  },
+  tab: {
+    padding: '16px 24px'
   },
   label: {
     fontSize: '1em',
@@ -72,7 +78,7 @@ const styleOverrides = theme => ({
     color: theme.colors.white,
     fontWeight: 400,
     textTransform: 'capitalize',
-    paddingLeft: 20
+    paddingLeft: 15
   }
 })
 
@@ -106,6 +112,7 @@ class Navbar extends PureComponent {
             key={page.id}
             label={page.name}
             classes={{
+              root: classes.tab,
               label: classes.label,
               selected: classes.selected
             }}
@@ -149,7 +156,6 @@ class Navbar extends PureComponent {
           </Typography>
         </Button>
 
-
         <SwipeableDrawer
           open={open}
           onClose={this.toggleDrawer}
@@ -170,11 +176,12 @@ class Navbar extends PureComponent {
     )
 
     return (
-      <AppBar classes={{root: !isMobile ? classes.appbar : classes.mobileAppbar}}>
+      <AppBar classes={{root: isMobile ? classes.mobileAppbar : classes.appbar}}>
         <div className={classes.toolbar}>
-          <Logo compact/>
+          {isMobile && mobileNav}
+          <Logo compact size={isMobile ? 1.8 : 2.2}/>
+          {!isMobile && desktopNav}
         </div>
-        {isMobile ? mobileNav : desktopNav}
       </AppBar>
     )
   }
