@@ -6,11 +6,16 @@ import { withStyles } from '@material-ui/core/styles'
 
 import ContactForm from '../components/ContactForm'
 import AddressCard from '../components/AddressCard'
+import InfoCard from '../components/InfoCard'
 
 const styles = theme => ({
   container: {
     ...theme.container,
     paddingTop: 30
+  },
+  a: {
+    color: theme.palette.primary.main,
+    fontSize: '1em'
   }
 })
 
@@ -39,6 +44,20 @@ class Contact extends PureComponent {
     return (
       <section className={classes.container}>
         <Grid container spacing={24}>
+
+          <InfoCard
+            text={(
+              <a className={classes.a} href="mailto:magdel@virtuegroup.co.za">magdel@virtuegroup.co.za</a>
+            )}
+            variant="email"
+          />
+          <InfoCard
+            text={(
+              <a className={classes.a} href="tel:+27555555555"> +27 55 555-5555</a>
+            )}
+            variant="phone"
+          />
+
           <Grid item xs={12}>
             <ContactForm/>
           </Grid>
