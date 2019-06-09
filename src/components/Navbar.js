@@ -147,7 +147,7 @@ class Navbar extends PureComponent {
             label={page.name}
             classes={{
               root: classes.tab,
-              label: classes.label,
+              wrapper: classes.label,
               selected: classes.selected
             }}
           />

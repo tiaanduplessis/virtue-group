@@ -8,12 +8,14 @@ import ContactForm from '../components/contact-form'
 import AddressCard from '../components/address-card'
 import InfoCard from '../components/info-card'
 
+import ContactLink from '../components/contact-link'
+
 const styles = theme => ({
   container: {
     ...theme.container,
     paddingTop: 30
   },
-  a: {
+  anchor: {
     color: theme.palette.primary.main,
     fontSize: '1em'
   }
@@ -43,18 +45,15 @@ class Contact extends PureComponent {
 
     return (
       <section className={classes.container}>
-        <Grid container spacing={24}>
+        <Grid container spacing={2}>
 
           <InfoCard
-            text={(
-              <a className={classes.a} href="mailto:magdel@virtuegroup.co.za">magdel@virtuegroup.co.za</a>
-            )}
+            text={<ContactLink variant="email"/>}
             variant="email"
           />
+
           <InfoCard
-            text={(
-              <a className={classes.a} href="tel:+27555555555"> +27 55 555-5555</a>
-            )}
+            text={<ContactLink variant="phone"/>}
             variant="phone"
           />
 

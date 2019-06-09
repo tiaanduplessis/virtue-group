@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import MaskedInput from 'react-text-mask'
 import axios from 'axios'
 
 import { validateField, validateForm } from '../utils/validation'
@@ -7,6 +6,8 @@ import { validateField, validateForm } from '../utils/validation'
 import {
   Grid, TextField, Button, FormControl, InputLabel, Input, CircularProgress
 } from '@material-ui/core'
+
+import TelInput from './tel-input'
 
 import SendIcon from '@material-ui/icons/Send'
 import ExpandingCard from './expanding-card'
@@ -19,21 +20,6 @@ const styles = {
     marginTop: 22,
     height: 40
   }
-}
-
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props
-  return (
-    <MaskedInput
-      {...other}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null)
-      }}
-      mask={['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
-      type="tel"
-    />
-  )
 }
 
 class ContactForm extends PureComponent {
@@ -101,17 +87,19 @@ class ContactForm extends PureComponent {
   }
 
   render () {
-
-    console.log(this.state.phoneNumber)
-
     const {
       name, company, emailAddress, phoneNumber, subject, message, isLoading,
       validationErrors
     } = this.state
 
     const form = (
-      <form onSubmit={this.handleSubmit} noValidate autoComplete="off" style={styles.form}>
-        <Grid container spacing={16}>
+      <form
+        onSubmit={this.handleSubmit}
+        noValidate
+        autoComplete="off"
+        style={styles.form}
+      >
+        <Grid container spacing={5}>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
@@ -153,7 +141,7 @@ class ContactForm extends PureComponent {
                 name="phoneNumber"
                 value={phoneNumber}
                 onChange={this.handleChange}
-                inputComponent={TextMaskCustom}
+                inputComponent={TelInput}
                 disabled={isLoading}
               />
             </FormControl>
