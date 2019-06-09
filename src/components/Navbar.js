@@ -15,7 +15,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import BuildIcon from '@material-ui/icons/Build'
 import EmailIcon from '@material-ui/icons/Email'
 
-import Logo from './Logo'
+import Logo from './logo'
 
 const icon = {
   Home: <HomeIcon/>,
@@ -40,20 +40,22 @@ const styleOverrides = theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    minHeight: 72
+    minHeight: 70
   },
   tabs: {
     padding: '0 12px'
   },
   tab: {
-    padding: '16px 24px'
+    minWidth: 92,
+    padding: 0
   },
   label: {
-    fontSize: '1em',
+    fontSize: 14,
     letterSpacing: 1.5
   },
   indicator: {
-    height: 3
+    height: 3,
+    backgroundColor: theme.colors.white
   },
   selected: {
     cursor: 'pointer',

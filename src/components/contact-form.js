@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import MaskedInput from 'react-text-mask'
 import axios from 'axios'
+
 import { validateField, validateForm } from '../utils/validation'
 
 import {
@@ -8,7 +9,7 @@ import {
 } from '@material-ui/core'
 
 import SendIcon from '@material-ui/icons/Send'
-import ExpandingCard from './ExpandingCard'
+import ExpandingCard from './expanding-card'
 
 const styles = {
   form: {

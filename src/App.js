@@ -2,17 +2,17 @@ import React, { PureComponent } from 'react'
 import { Switch, Redirect, Route, withRouter } from "react-router-dom"
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-import theme from './theme/MuiTheme'
+import theme from './theme/mui-theme'
 
-import { navData } from './utils/navData'
+import { navData } from './utils/nav-data'
 
-import Home from './pages/Home'
-import About from './pages/About'
+import Home from './pages/home'
+import About from './pages/about'
 import Services from './pages/services/'
-import Contact from './pages/Contact'
+import Contact from './pages/contact'
 
-import Navbar from './components//Navbar'
-import Background from './components/Background'
+import Navbar from './components/navbar'
+import Background from './components/background'
 
 function getPageIndex(pathname) {
   const urlPage = pathname.split("/")[1]

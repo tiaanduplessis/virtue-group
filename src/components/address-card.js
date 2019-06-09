@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { List, ListItem, ListItemText } from '@material-ui/core'
 
-import ExpandingCard from './ExpandingCard'
+import ExpandingCard from './expanding-card'
 
 import HomeIcon  from '@material-ui/icons/Home'
 import MailOutlineIcon  from '@material-ui/icons/MailOutline'

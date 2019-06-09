@@ -4,9 +4,9 @@ import axios from 'axios'
 import { Grid } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
-import ContactForm from '../components/ContactForm'
-import AddressCard from '../components/AddressCard'
-import InfoCard from '../components/InfoCard'
+import ContactForm from '../components/contact-form'
+import AddressCard from '../components/address-card'
+import InfoCard from '../components/info-card'
 
 const styles = theme => ({
   container: {
