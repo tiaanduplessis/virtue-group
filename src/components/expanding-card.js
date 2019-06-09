@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { withStyles } from '@material-ui/core/styles'
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import {
@@ -18,7 +16,7 @@ const styleOverrides = theme => ({
     minHeight: 'auto'
   },
   title: {
-    marginLeft: theme.spacing.units * 2
+    marginLeft: 20
   }
 })
 

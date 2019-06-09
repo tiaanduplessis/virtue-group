@@ -10,7 +10,7 @@ const theme = createMuiTheme({
     primary: {
       light: '#4D5f6A',
       main: '#213845',
-      dark: '#172730'
+      dark: '#162730'
     },
     secondary: {
       light: '#F44A5A',
@@ -18,9 +18,6 @@ const theme = createMuiTheme({
       dark: '#770D17'
     },
     paper: 'rgba(255, 255, 255, 0.7)'
-  },
-  spacing: {
-    units: 10
   },
   typography: {
     useNextVariants: true,
@@ -39,10 +36,10 @@ const theme = createMuiTheme({
   },
   container: {
     display: 'flex',
-    padding: '0 2vw',
+    padding: '0 50px',
     '& > *': {
-      maxWidth: 1500,
-      margin: '0 auto'
+      margin: '0 auto',
+      maxWidth: 1500
     }
   }
 })

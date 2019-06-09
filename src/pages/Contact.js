@@ -4,13 +4,20 @@ import axios from 'axios'
 import { Grid } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
-import ContactForm from '../components/ContactForm'
-import AddressCard from '../components/AddressCard'
+import ContactForm from '../components/contact-form'
+import AddressCard from '../components/address-card'
+import InfoCard from '../components/info-card'
+
+import ContactLink from '../components/contact-link'
 
 const styles = theme => ({
   container: {
     ...theme.container,
     paddingTop: 30
+  },
+  anchor: {
+    color: theme.palette.primary.main,
+    fontSize: '1em'
   }
 })
 
@@ -38,7 +45,18 @@ class Contact extends PureComponent {
 
     return (
       <section className={classes.container}>
-        <Grid container spacing={24}>
+        <Grid container spacing={2}>
+
+          <InfoCard
+            text={<ContactLink variant="email"/>}
+            variant="email"
+          />
+
+          <InfoCard
+            text={<ContactLink variant="phone"/>}
+            variant="phone"
+          />
+
           <Grid item xs={12}>
             <ContactForm/>
           </Grid>

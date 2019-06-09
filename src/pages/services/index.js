@@ -6,10 +6,10 @@ import windowSize from 'react-window-size'
 import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Tabs, Tab } from '@material-ui/core/'
 
-import Electrical from './Electrical'
-import Construction from './Construction'
-import Plumbing from './Plumbing'
-import Maintenance from './Maintenance'
+import Electrical from './electrical'
+import Construction from './construction'
+import Plumbing from './plumbing'
+import Maintenance from './maintenance'
 
 const pages = ['electrical', 'construction', 'plumbing', 'maintenance']
 

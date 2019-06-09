@@ -1,18 +1,38 @@
 import React from 'react'
 
-import background from '../images/background.svg'
+import Footer from './footer'
 
-const Background = ({children}) => {
-  return <div className="pageHolder">
+import background from '../images/background.svg'
+import bottomImage from '../images/page-bottom.svg'
+
+const Background = ({children}) => (
+  <div className="pageHolder">
     <div className="background"/>
+
     <div className="pageContent">{children}</div>
+
+    <img
+      src={bottomImage}
+      alt="background bottom"
+      className="bottomImage"
+    />
+
+    <Footer />
+
     <style jsx>{`
       .pageHolder {
         min-width: 100vw;
         min-height: 100vh;
       }
       .pageContent {
-        padding-top: 72px;
+        min-height: calc(100vh - 106px);
+        padding-top: 70px;
+      }
+      .bottomImage {
+        position: fixed;
+        bottom: 0px;
+        z-index: -1;
+        width: 100%;
       }
       .background {
         position: fixed;
@@ -26,6 +46,8 @@ const Background = ({children}) => {
       }
     `}</style>
   </div>
-}
+)
+
+
 
 export default Background
