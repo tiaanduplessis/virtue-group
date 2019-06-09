@@ -16,7 +16,7 @@ const styleOverrides = theme => ({
     minHeight: 'auto'
   },
   title: {
-    marginLeft: theme.spacing.units * 2
+    marginLeft: 20
   }
 })
 

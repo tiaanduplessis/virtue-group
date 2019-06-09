@@ -13,7 +13,7 @@ const data = {
   }
 }
 
-const ContactLink = ({variant, color}) => {
+const ContactLink = ({variant, color, style}) => {
   const { content, href } = data[variant]
   const theme = useTheme()
 
@@ -23,14 +23,17 @@ const ContactLink = ({variant, color}) => {
     theme.colors.white
   )
 
+  const styles={
+    color: textColor,
+    whiteSpace: 'nowrap',
+    ...style
+  }
+
   return (
-      <Link
-        style={{
-          color: textColor,
-          ...theme.container
-        }}
-        href={href}
-      > {content}
+    <Link
+      style={styles}
+      href={href}
+    > {content}
     </Link>
   )
 }

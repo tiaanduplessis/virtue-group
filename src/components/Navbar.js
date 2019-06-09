@@ -211,8 +211,9 @@ class Navbar extends PureComponent {
 
     return (
       <AppBar
-        classes={{root: isMobile ? classes.mobileAppbar : classes.appbar}}
-        style={showNavbar ? active : hidden}
+        classes={{
+          root: isMobile ? classes.mobileAppbar : classes.appbar
+        }}
       >
         <div className={classes.toolbar}>
           {isMobile && mobileNav}
