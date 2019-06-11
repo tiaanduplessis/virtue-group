@@ -4,7 +4,7 @@ import homeStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
 // import homeImage from '../images/home-image.png'
-import homeImageLowQuality from '../images/home-image.png'
+import homeImageLowQuality from '../images/home-image-low-quality.png'
 
 import { Typography } from '@material-ui/core'
 
