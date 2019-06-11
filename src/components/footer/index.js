@@ -1,24 +1,10 @@
 import React from 'react'
+
+import footerStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
-import ContactLink from './contact-link'
-
+import ContactLink from '../links/contact-link'
 import { Toolbar } from '@material-ui/core'
-
-const styleOverrides = theme => ({
-  footer: {
-    height: 70,
-    backgroundColor: theme.palette.primary.dark,
-    width: '100vw',
-    marginTop: 36,
-    ...theme.container
-  },
-  toolbar: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end',
-  }
-})
 
 const Footer = ({classes}) => (
   <footer className={classes.footer}>
@@ -36,4 +22,4 @@ const Footer = ({classes}) => (
   </footer>
 )
 
-export default withStyles(styleOverrides)(Footer)
+export default withStyles(footerStyles)(Footer)

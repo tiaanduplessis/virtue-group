@@ -1,25 +1,14 @@
 import React, { PureComponent } from 'react'
 import axios from 'axios'
 
-import { Grid } from '@material-ui/core'
+import contactStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
-import ContactForm from '../components/contact-form'
-import AddressCard from '../components/address-card'
-import InfoCard from '../components/info-card'
-
-import ContactLink from '../components/contact-link'
-
-const styles = theme => ({
-  container: {
-    ...theme.container,
-    paddingTop: 30
-  },
-  anchor: {
-    color: theme.palette.primary.main,
-    fontSize: '1em'
-  }
-})
+import { Grid } from '@material-ui/core'
+import ContactForm from '../../components/forms/contact-form'
+import AddressCard from '../../components/address-card'
+import Card from '../../components/cards'
+import ContactLink from '../../components/links/contact-link'
 
 class Contact extends PureComponent {
 
@@ -47,15 +36,14 @@ class Contact extends PureComponent {
       <section className={classes.container}>
         <Grid container spacing={2}>
 
-          <InfoCard
-            text={<ContactLink variant="email"/>}
-            variant="email"
-          />
+          <Card width={6}>
+            <ContactLink variant="email"/>
+          </Card>
 
-          <InfoCard
-            text={<ContactLink variant="phone"/>}
-            variant="phone"
-          />
+          <Card width={6}>
+            <ContactLink variant="phone"/>
+          </Card>
+
 
           <Grid item xs={12}>
             <ContactForm/>
@@ -69,4 +57,4 @@ class Contact extends PureComponent {
   }
 }
 
-export default withStyles(styles)(Contact)
+export default withStyles(contactStyles)(Contact)

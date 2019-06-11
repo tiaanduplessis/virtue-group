@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Footer from './footer'
+import Footer from '../footer'
 
-import background from '../images/background.svg'
-import bottomImage from '../images/page-bottom.svg'
+import background from '../../images/background.svg'
+import bottomImage from '../../images/page-bottom.svg'
 
 const Background = ({children}) => (
   <div className="pageHolder">

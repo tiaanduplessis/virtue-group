@@ -1,26 +1,30 @@
 import React, { PureComponent, Fragment } from 'react'
-import SwipeableViews from 'react-swipeable-views'
 import { withRouter, Redirect } from 'react-router-dom'
+
+import SwipeableViews from 'react-swipeable-views'
+
 import windowSize from 'react-window-size'
 
+import { servicesStyles } from './styles'
 import { withStyles } from '@material-ui/core/styles'
-import { AppBar, Tabs, Tab } from '@material-ui/core/'
+
+import {
+  AppBar,
+  Tabs,
+  Tab
+} from '@material-ui/core/'
 
 import Electrical from './electrical'
 import Construction from './construction'
 import Plumbing from './plumbing'
 import Maintenance from './maintenance'
 
-const pages = ['electrical', 'construction', 'plumbing', 'maintenance']
-
-const styleOverrides = theme => ({
-  appbar: {
-    ...theme.container
-  },
-  tabs: {
-    width: '100%'
-  }
-})
+const pages = [
+  'electrical',
+  'construction',
+  'plumbing',
+  'maintenance'
+]
 
 class Services extends PureComponent {
 
@@ -56,7 +60,12 @@ class Services extends PureComponent {
 
   render() {
     const { value } = this.state
-    const { classes, windowWidth } = this.props
+    
+    const {
+      classes,
+      windowWidth
+    } = this.props
+
     const isMobile = windowWidth < 760
 
     return value === -1 ? <Redirect to="/services/electrical" /> : (
@@ -98,5 +107,5 @@ class Services extends PureComponent {
 }
 
 export default withRouter(windowSize(
-  withStyles(styleOverrides)(Services)
+  withStyles(servicesStyles)(Services)
 ))

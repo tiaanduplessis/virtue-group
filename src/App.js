@@ -6,12 +6,12 @@ import theme from './theme/mui-theme'
 
 import { navData } from './utils/nav-data'
 
-import Home from './pages/home'
+import Home from './pages/'
 import About from './pages/about'
-import Services from './pages/services/'
+import Services from './pages/services'
 import Contact from './pages/contact'
 
-import Navbar from './components/navbar'
+import Navbar from './components/navbars'
 import Background from './components/background'
 
 function getPageIndex(pathname) {

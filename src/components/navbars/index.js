@@ -1,12 +1,22 @@
 import React, { PureComponent } from 'react'
 import { Link } from "react-router-dom"
+
 import windowSize from 'react-window-size'
 
+import { navbarStyles } from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
 import {
-  AppBar, Tabs, Tab, SwipeableDrawer, Button, List, ListItem,
-  ListItemText, Typography, ListItemIcon
+  AppBar,
+  Tabs,
+  Tab,
+  SwipeableDrawer,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  ListItemIcon
 } from '@material-ui/core'
 
 import MenuIcon from '@material-ui/icons/Menu'
@@ -15,7 +25,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import BuildIcon from '@material-ui/icons/Build'
 import EmailIcon from '@material-ui/icons/Email'
 
-import Logo from './logo'
+import Logo from '../logo'
 
 const icon = {
   Home: <HomeIcon/>,
@@ -25,64 +35,6 @@ const icon = {
 }
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
-
-const styleOverrides = theme => ({
-  appbar: {
-    ...theme.container,
-    backgroundColor: theme.palette.primary.dark
-  },
-  mobileAppbar: {
-    paddingRight: 20,
-    backgroundColor: theme.palette.primary.dark
-  },
-  toolbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    minHeight: 70
-  },
-  tabs: {
-    padding: '0 12px'
-  },
-  tab: {
-    minWidth: 92,
-    padding: 0
-  },
-  label: {
-    fontSize: 14,
-    letterSpacing: 1.5
-  },
-  indicator: {
-    height: 3,
-    backgroundColor: theme.colors.white
-  },
-  selected: {
-    cursor: 'pointer',
-    pointerEvents: 'none'
-  },
-  list: {
-    minWidth: 200,
-  },
-  selectedLink: {
-    fontWeight: 700
-  },
-  iconButton: {
-    color: theme.colors.white
-  },
-  mobileNavbar: {
-    width: '100vw',
-    display: 'flex',
-    alignItems: 'center',
-    height: 48
-  },
-  title: {
-    color: theme.colors.white,
-    fontWeight: 400,
-    textTransform: 'capitalize',
-    paddingLeft: 15
-  }
-})
 
 class Navbar extends PureComponent {
 
@@ -97,7 +49,15 @@ class Navbar extends PureComponent {
 
   render() {
     const { listVisible } = this.state
-    const { classes, value, navData, handleChange, windowWidth } = this.props
+
+    const {
+      classes,
+      value,
+      navData,
+      handleChange,
+      windowWidth
+    } = this.props
+
     const isMobile = windowWidth < 760
     const selectedName = navData[value].name
 
@@ -134,7 +94,7 @@ class Navbar extends PureComponent {
                 <ListItemText>
                   <Typography
                     classes={{
-                      root: item.name===selectedName ? classes.selectedLink : null
+                      subtitle1: item.name===selectedName ? classes.selectedLink : null
                     }}
                     variant="subtitle1"
                   > {item.name}
@@ -153,8 +113,11 @@ class Navbar extends PureComponent {
           onClick={this.toggleDrawer}
           classes={{root: classes.iconButton}}
         >
-          <MenuIcon/>
-          <Typography classes={{root: classes.title}} variant="h6">
+          <MenuIcon/>    
+          <Typography
+            classes={{h6: classes.title}}
+            variant="h6"
+          >
             {selectedName}
           </Typography>
         </Button>
@@ -195,5 +158,5 @@ class Navbar extends PureComponent {
 }
 
 export default windowSize(
-  withStyles(styleOverrides)(Navbar)
+  withStyles(navbarStyles)(Navbar)
 )

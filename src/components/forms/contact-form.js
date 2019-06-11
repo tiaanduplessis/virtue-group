@@ -1,26 +1,26 @@
 import React, { PureComponent } from 'react'
 import axios from 'axios'
 
-import { validateField, validateForm } from '../utils/validation'
+import formStyles from './styles'
 
 import {
-  Grid, TextField, Button, FormControl, InputLabel, Input, CircularProgress
+  validateField,
+  validateForm
+} from '../../utils/validation'
+
+import {
+  Grid,
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Input,
+  CircularProgress
 } from '@material-ui/core'
 
-import TelInput from './tel-input'
+import TelInput from '../inputs/tel-input'
 
-import SendIcon from '@material-ui/icons/Send'
-import ExpandingCard from './expanding-card'
-
-const styles = {
-  form: {
-    width: '100%'
-  },
-  button: {
-    marginTop: 22,
-    height: 40
-  }
-}
+import ExpandingCard from '../cards/expanding-card'
 
 class ContactForm extends PureComponent {
 
@@ -37,7 +37,11 @@ class ContactForm extends PureComponent {
   }
 
   handleChange = event => {
-    const { previousErrors, validationErrors } = this.state
+    const {
+      previousErrors,
+      validationErrors
+    } = this.state
+
     const { name , value } = event.target
     let errors = Object.assign({}, validationErrors)
 
@@ -67,7 +71,14 @@ class ContactForm extends PureComponent {
       this.setState({isLoading: true, validationErrors: {}})
     }, 200)
 
-    const { name, company, emailAddress, phoneNumber, subject, message } = this.state
+    const {
+      name,
+      company,
+      emailAddress,
+      phoneNumber,
+      subject,
+      message
+    } = this.state
 
     try {
       const res = await axios.post('https://virtue-mailer.herokuapp.com/send', {
@@ -88,7 +99,13 @@ class ContactForm extends PureComponent {
 
   render () {
     const {
-      name, company, emailAddress, phoneNumber, subject, message, isLoading,
+      name,
+      company,
+      emailAddress,
+      phoneNumber,
+      subject,
+      message,
+      isLoading,
       validationErrors
     } = this.state
 
@@ -97,7 +114,7 @@ class ContactForm extends PureComponent {
         onSubmit={this.handleSubmit}
         noValidate
         autoComplete="off"
-        style={styles.form}
+        style={formStyles.form}
       >
         <Grid container spacing={5}>
           <Grid item xs={12} sm={6}>
@@ -135,7 +152,11 @@ class ContactForm extends PureComponent {
 
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth margin="normal">
-              <InputLabel htmlFor="formatted-text-mask-input">Phone number</InputLabel>
+              <InputLabel
+                htmlFor="formatted-text-mask-input"
+              >
+                Phone number
+              </InputLabel>
               <Input
                 id="formatted-text-mask-input"
                 name="phoneNumber"
@@ -187,7 +208,12 @@ class ContactForm extends PureComponent {
           error={!!validationErrors.message}
         />
 
-      <Button style={styles.button} fullWidth type="submit" disabled={isLoading}>
+        <Button
+          fullWidth
+          type="submit"
+          disabled={isLoading}
+          style={formStyles.button}
+        >
           {isLoading ? <CircularProgress size={30}/> : "Submit"}
         </Button>
       </form>
@@ -195,11 +221,11 @@ class ContactForm extends PureComponent {
 
     return (
       <ExpandingCard
+        variant="send"
         title="Send us a message"
-        icon={<SendIcon/>}
         defaultExpanded
       >
-      {form}
+        {form}
       </ExpandingCard>
     )
   }
