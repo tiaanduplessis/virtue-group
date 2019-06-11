@@ -17,7 +17,7 @@ const styleOverrides = theme => ({
 const Home = ({classes}) => {
   return (
     <Fragment>
-      <div className="home-image"/>
+      <div className="homeImage"/>
       <Typography
         align="center"
         variant="h4"
@@ -28,9 +28,8 @@ const Home = ({classes}) => {
         Services that we provide
       </Typography>
 
-
       <style jsx>{`
-        .home-image {
+        .homeImage {
           width: 100vw;
           padding-top: calc(50vh - 70px);
           overflow: hidden;

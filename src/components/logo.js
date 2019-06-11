@@ -1,15 +1,13 @@
 import React, { Fragment } from 'react'
 import { useTheme } from '@material-ui/styles'
 
-import { Link as RouterLink, withRouter } from 'react-router-dom'
-import Link from '@material-ui/core/Link'
+import { Link, withRouter } from 'react-router-dom'
 
 const Logo = ({ location, size, compact }) => {
-  const LogoLink = props => <RouterLink to="/home" {...props} />
   const theme = useTheme()
 
   return (
-    <Link to="/" component={LogoLink}  className="logo">
+    <Link to="/home" className="logo">
       {!compact && <div className="logo-top">the</div>}
 
       <div className="logo-center">
@@ -69,8 +67,6 @@ const Logo = ({ location, size, compact }) => {
     </Link>
   )
 }
-
-
 
 Logo.defaultProps = {
   size: 2,

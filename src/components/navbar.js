@@ -84,42 +84,11 @@ const styleOverrides = theme => ({
   }
 })
 
-const active = {
-  visibility: 'visible',
-  transition: 'all 200ms ease-in'
-}
-
-const hidden = {
-  visibility: 'hidden',
-  transition: 'all 200ms ease-out',
-  transform: 'translate(0, -100%)'
-}
-
 class Navbar extends PureComponent {
 
   state = {
     visible: true,
-    listVisible: false,
-    showNavbar: true,
-    scrollPos: 0
-  }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll)
-  }
-
-  // https://medium.com/@glweems/react-auto-hide-on-scroll-navbar-617a6749a96
-  handleScroll = () => {
-    const { scrollPos } = this.state
-    const { top } = document.body.getBoundingClientRect()
-    this.setState({
-      scrollPos: top,
-      showNavbar: top > scrollPos
-    })
+    listVisible: false
   }
 
   toggleDrawer = () => {
@@ -127,7 +96,7 @@ class Navbar extends PureComponent {
   }
 
   render() {
-    const { listVisible, showNavbar } = this.state
+    const { listVisible } = this.state
     const { classes, value, navData, handleChange, windowWidth } = this.props
     const isMobile = windowWidth < 760
     const selectedName = navData[value].name

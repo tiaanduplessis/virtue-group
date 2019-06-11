@@ -31,10 +31,12 @@ class App extends PureComponent {
     value: 0
   }
 
-  handleChange = (props, value) => {
+  handleChange = (event, value) => {
+    const { history } = this.props
+
     this.setState({ value }, () => {
       const newRoute = navData[value].path
-      this.props.history.push(newRoute)
+      history.push(newRoute)
     })
   }
 
