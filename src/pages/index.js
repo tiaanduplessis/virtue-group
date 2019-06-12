@@ -5,8 +5,8 @@ import BackgroundImageOnLoad from 'background-image-on-load';
 import homeStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
-import homeImage from '../images/home-image.png'
-import homeImageLowQuality from '../images/home-image-low-quality.png'
+import homeImageHq from '../images/home-image-hq.png'
+import homeImageLq from '../images/home-image-lq.png'
 
 import { Typography } from '@material-ui/core'
 
@@ -24,7 +24,7 @@ class Home extends Component {
       <Fragment>
         <div className="homeImage">
           <BackgroundImageOnLoad
-            src={homeImage}
+            src={homeImageHq}
             onLoadBg={() =>
               this.setState({
               bgIsLoaded: true
@@ -48,7 +48,7 @@ class Home extends Component {
             width: 100vw;
             padding-top: calc(50vh - 70px);
             overflow: hidden;
-            background-image: url(${bgIsLoaded ? homeImage: homeImageLowQuality});
+            background-image: url(${bgIsLoaded ? homeImageHq: homeImageLq});
             background-repeat: no-repeat;
             background-size: cover;
             background-color: rgba(23, 38, 47, 0.1);
