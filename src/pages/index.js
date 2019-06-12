@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import homeStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
-// import homeImage from '../images/home-image.png'
+import homeImage from '../images/home-image.png'
 import homeImageLowQuality from '../images/home-image-low-quality.png'
 
 import { Typography } from '@material-ui/core'
@@ -29,6 +29,7 @@ const Home = ({classes}) => {
           padding-top: calc(50vh - 70px);
           overflow: hidden;
           background-image: url(${homeImageLowQuality});
+          background-image: url(${homeImage});
           background-repeat: no-repeat;
           background-size: cover;
           background-color: rgba(23, 38, 47, 0.1);
