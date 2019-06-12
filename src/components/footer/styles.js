@@ -1,10 +1,10 @@
 const footerStyles = theme => ({
   footer: {
+    ...theme.container,
     height: 70,
     backgroundColor: theme.palette.primary.dark,
     width: '100vw',
-    marginTop: 36,
-    ...theme.container
+    marginTop: 16,
   },
   toolbar: {
     width: '100%',

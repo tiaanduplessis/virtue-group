@@ -1,15 +1,23 @@
 const servicesData = [
   {
-    name: 'electrical'
+    name: 'electrical',
+    description: 'lorem ipsum short description lorem ipsum',
+    route: '/services/electrical'
   },
   {
-    name: 'maintenance'
+    name: 'maintenance',
+    description: 'short description lorem ipsum short description lorem ipsum',
+    route: '/services/maintenance'
   },
   {
-    name: 'plumbing'
+    name: 'plumbing',
+    description: 'short description lorem ipsum short description lorem ipsum short description lorem ipsum',
+    route: '/services/plumbing'
   },
   {
-    name: 'construction'
+    name: 'construction',
+    description: 'short description lorem ipsum lorem ipsum',
+    route: '/services/construction'
   }
 ]
 

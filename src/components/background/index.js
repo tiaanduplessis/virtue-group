@@ -25,7 +25,7 @@ const Background = ({children}) => (
         min-height: 100vh;
       }
       .pageContent {
-        min-height: calc(100vh - 106px);
+        min-height: calc(100vh - 86px);
         padding-top: 70px;
       }
       .bottomImage {

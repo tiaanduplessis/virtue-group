@@ -9,6 +9,7 @@ import homeImageHq from '../images/home-image-hq.png'
 import homeImageLq from '../images/home-image-lq.png'
 
 import { Typography } from '@material-ui/core'
+import ServiceCards from '../components/cards/service-cards'
 
 class Home extends Component {
 
@@ -42,6 +43,8 @@ class Home extends Component {
         >
           Services that we provide
         </Typography>
+
+        <ServiceCards>lorem ispum</ServiceCards>
 
         <style jsx>{`
           .homeImage {
