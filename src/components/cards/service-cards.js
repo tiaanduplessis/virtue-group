@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import electricalIcon from '../../images/icons/services/electrical-dark.svg'
 
 import { withStyles } from '@material-ui/core/styles'
+import { serviceCardStyles } from './styles'
 
 import { servicesData } from '../../utils/data'
 
@@ -12,42 +13,6 @@ import {
   Button,
   Grid
 } from '@material-ui/core'
-
-const serviceCardStyles = theme => ({
-  container: {
-    ...theme.container
-  },
-  cardContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    maxWidth: 340
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: 400,
-    textTransform: 'uppercase',
-    marginTop: 16
-  },
-  cardDescription: {
-    marginTop: 16,
-    height: 50,
-    overflow: 'hidden',
-    fontSize: 16,
-    opacity: .6,
-    textAlign: 'center'
-  },
-  button: {
-    marginTop: 16,
-    backgroundColor: '#009688',
-    '& a': {
-      textTransform: 'uppercase',
-      color: theme.colors.white,
-      fontSize: 14
-    }
-  }
-})
 
 class ServiceCards extends PureComponent {
 
@@ -76,6 +41,7 @@ class ServiceCards extends PureComponent {
           >
             <Link to={route}>More Info</Link>
           </Button>
+
         </div>
       </Grid>
     )
@@ -86,7 +52,12 @@ class ServiceCards extends PureComponent {
 
     return (
       <div className={classes.container}>
-        <Grid container spacing={4} align="center">
+        <Grid
+          container
+          spacing={4}
+          align="center"
+          classes={{root: classes.gridContainer}}
+        >
           {servicesData.map(service => this.renderCard(service))}
         </Grid>
       </div>

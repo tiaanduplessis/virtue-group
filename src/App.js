@@ -74,6 +74,7 @@ class App extends PureComponent {
             font-family: ${theme.typography.fontFamily};
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
           }
           code {
             font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -85,6 +86,15 @@ class App extends PureComponent {
           input:-webkit-autofill:active {
               -webkit-transition-delay: 9999s;
               -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+          }
+          ::-webkit-scrollbar {
+            width: 10px;
+          }
+          ::-webkit-scrollbar-track {
+            background: #dce2e6;
+          }
+          ::-webkit-scrollbar-thumb {
+            background: #506B7A;
           }
         `}</style>
       </MuiThemeProvider>

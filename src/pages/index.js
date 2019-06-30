@@ -44,7 +44,7 @@ class Home extends Component {
           Services that we provide
         </Typography>
 
-        <ServiceCards>lorem ispum</ServiceCards>
+        <ServiceCards/>
 
         <style jsx>{`
           .homeImage {
