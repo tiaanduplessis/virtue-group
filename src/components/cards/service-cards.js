@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 
-import electricalIcon from '../../images/icons/services/electrical-dark.svg'
+import electrical from '../../images/icons/services/electrical-dark.svg'
+import maintenance from '../../images/icons/services/maintenance-dark.svg'
+import plumbing from '../../images/icons/services/plumbing-dark.svg'
+import construction from '../../images/icons/services/construction-dark.svg'
 
 import { withStyles } from '@material-ui/core/styles'
 import { serviceCardStyles } from './styles'
@@ -14,6 +17,13 @@ import {
   Grid
 } from '@material-ui/core'
 
+const serviceIcons = {
+  electrical,
+  maintenance,
+  plumbing,
+  construction
+}
+
 class ServiceCards extends PureComponent {
 
   renderCard = service => {
@@ -23,7 +33,7 @@ class ServiceCards extends PureComponent {
     return (
       <Grid item xs={12} md={6} lg={3} key={name}>
         <div className={classes.cardContainer}>
-          <img src={electricalIcon} alt={`${name}-icon`} />
+          <img src={serviceIcons[name]} alt={`${name}-icon`} />
 
           <Typography
             variant="subtitle1"

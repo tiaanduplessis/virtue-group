@@ -15,7 +15,7 @@ const navbarStyles = theme => ({
     minHeight: 70
   },
   tabs: {
-    padding: '0 12px'
+    padding: 0
   },
   tab: {
     minWidth: 92,

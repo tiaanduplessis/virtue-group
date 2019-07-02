@@ -37,7 +37,7 @@ const ContactLink = ({variant, color, style}) => {
   const content = (
     <Fragment>
       {icon}
-      {text}
+      <span style={{marginLeft: 16}}>{text}</span>
     </Fragment>
   )
 

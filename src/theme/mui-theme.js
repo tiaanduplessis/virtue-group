@@ -36,7 +36,7 @@ const theme = createMuiTheme({
   },
   container: {
     display: 'flex',
-    padding: '0 50px',
+    padding: '0 24px',
     '& > *': {
       margin: '0 auto',
       maxWidth: 1500

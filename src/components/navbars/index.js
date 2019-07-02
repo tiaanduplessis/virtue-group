@@ -113,7 +113,7 @@ class Navbar extends PureComponent {
           onClick={this.toggleDrawer}
           classes={{root: classes.iconButton}}
         >
-          <MenuIcon/>    
+          <MenuIcon/>
           <Typography
             classes={{h6: classes.title}}
             variant="h6"
