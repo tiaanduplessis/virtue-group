@@ -4,7 +4,8 @@ import BackgroundImageOnLoad from 'background-image-on-load';
 class ImageLoader extends PureComponent {
 
   static defaultProps = {
-    variant: 'default'
+    variant: 'default',
+    alt: 'image'
   }
 
   state = {
@@ -13,7 +14,13 @@ class ImageLoader extends PureComponent {
 
   render() {
     const { hdImageIsLoaded } = this.state
-    const { hdImage, sdImage, variant, alt, ...otherProps } = this.props
+    const {
+      hdImage,
+      sdImage,
+      variant,
+      alt,
+      ...otherProps
+    } = this.props
 
     const checkIfLoaded = (
       <BackgroundImageOnLoad
@@ -36,7 +43,7 @@ class ImageLoader extends PureComponent {
         ) : (
           <img
             src={hdImageIsLoaded ? hdImage: sdImage}
-            alt={alt || 'image'}
+            alt={alt}
             {...otherProps}
           />
         )}
@@ -48,7 +55,6 @@ class ImageLoader extends PureComponent {
             background-image: url(${hdImageIsLoaded ? hdImage: sdImage});
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: rgba(23, 38, 47, 0.1);
           }
         `}</style>
       </Fragment>

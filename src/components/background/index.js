@@ -1,50 +1,35 @@
 import React from 'react'
 
 import Footer from '../footer'
+import ImageLoader from '../image-loader'
 
 import background from '../../images/background.svg'
 import bottomImage from '../../images/page-bottom.svg'
 
+import backgroundStyles from './styles'
+
 const Background = ({children}) => (
-  <div className="pageHolder">
-    <div className="background"/>
-
-    <div className="pageContent">{children}</div>
-
-    <img
-      src={bottomImage}
+  <div
+    style={backgroundStyles.pageContainer}
+  >
+    <ImageLoader
+      style={backgroundStyles.background}
+      hdImage={background}
+      sdImage={background}
       alt="background bottom"
-      className="bottomImage"
     />
 
-    <Footer />
+    <div style={backgroundStyles.pageContent}>
+      {children}
+    </div>
 
-    <style jsx>{`
-      .pageHolder {
-        min-width: 100vw;
-        min-height: 100vh;
-      }
-      .pageContent {
-        min-height: calc(100vh - 86px);
-        padding-top: 70px;
-      }
-      .bottomImage {
-        position: fixed;
-        bottom: 0px;
-        z-index: -1;
-        width: 100%;
-      }
-      .background {
-        position: fixed;
-        min-width: 100vw;
-        min-height: 100vh;
-        background-image: url(${background});
-        background-repeat: no-repeat;
-        background-size: cover;
-        z-index: -1;
-        background-color: rgba(23, 38, 47, 0.1);
-      }
-    `}</style>
+    <ImageLoader
+      style={backgroundStyles.bottomImage}
+      hdImage={bottomImage}
+      sdImage={bottomImage}
+      alt="background bottom"
+    />
+    <Footer />
   </div>
 )
 
