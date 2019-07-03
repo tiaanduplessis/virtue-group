@@ -1,10 +1,13 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 
+import ImageLoader from '../image-loader'
+
 import electrical from '../../images/icons/services/electrical-dark.svg'
 import maintenance from '../../images/icons/services/maintenance-dark.svg'
 import plumbing from '../../images/icons/services/plumbing-dark.svg'
 import construction from '../../images/icons/services/construction-dark.svg'
+import loadingIcon from '../../images/icons/services/loading-dark.png'
 
 import { withStyles } from '@material-ui/core/styles'
 import { serviceCardStyles } from './styles'
@@ -30,8 +33,14 @@ class ServiceCards extends PureComponent {
     const { name, description, route } = service
 
     return (
-        <div className={classes.cardContainer}>
-          <img src={serviceIcons[name]} alt={`${name}-icon`} />
+        <div key={name} className={classes.cardContainer}>
+          <ImageLoader
+            style={{height: 100, width: 100}}
+            hdImage={serviceIcons[name]}
+            sdImage={loadingIcon}
+            alt={`${name}-icon`}
+            variant="image"
+          />
 
           <Typography
             variant="subtitle1"

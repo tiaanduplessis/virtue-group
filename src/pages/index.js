@@ -1,6 +1,4 @@
-import React, { Component, Fragment } from 'react'
-
-import BackgroundImageOnLoad from 'background-image-on-load';
+import React, { Fragment } from 'react'
 
 import homeStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
@@ -10,56 +8,30 @@ import homeImageLq from '../images/home-image-lq.png'
 
 import { Typography } from '@material-ui/core'
 import ServiceCards from '../components/cards/service-cards'
+import ImageLoader from '../components/image-loader'
 
-class Home extends Component {
+const Home = ({ classes }) => (
+  <Fragment>
+    <div className="homeImage">
+      <ImageLoader
+        hdImage={homeImageHq}
+        sdImage={homeImageLq}
+        style={{paddingTop: 'calc(50vh - 100px)'}}
+      />
+    </div>
 
-  state = {
-    bgIsLoaded: false
-  }
+    <Typography
+      align="center"
+      variant="h4"
+      classes={{
+        h4: classes.subtitle
+      }}
+    >
+      Services that we provide
+    </Typography>
 
-  render() {
-    const { bgIsLoaded } = this.state
-    const { classes } = this.props
-
-    return (
-      <Fragment>
-        <div className="homeImage">
-          <BackgroundImageOnLoad
-            src={homeImageHq}
-            onLoadBg={() =>
-              this.setState({
-              bgIsLoaded: true
-            })}
-            onError={err => console.log('error', err)}
-          />
-        </div>
-
-        <Typography
-          align="center"
-          variant="h4"
-          classes={{
-            h4: classes.subtitle
-          }}
-        >
-          Services that we provide
-        </Typography>
-
-        <ServiceCards/>
-
-        <style jsx>{`
-          .homeImage {
-            width: 100vw;
-            padding-top: calc(50vh - 70px);
-            overflow: hidden;
-            background-image: url(${bgIsLoaded ? homeImageHq: homeImageLq});
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: rgba(23, 38, 47, 0.1);
-          }
-        `}</style>
-      </Fragment>
-    )
-  }
-}
+    <ServiceCards/>
+  </Fragment>
+)
 
 export default withStyles(homeStyles)(Home)
