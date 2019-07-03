@@ -6,7 +6,8 @@ const backgroundStyles = {
   background: {
     position: 'fixed',
     minHeight: '100vh',
-    zIndex: -1
+    zIndex: -1,
+    backgroundColor: '#e6e6e6'
   },
   bottomImage: {
     position: 'fixed',
@@ -16,7 +17,8 @@ const backgroundStyles = {
   },
   pageContent: {
     minHeight: 'calc(100vh - 86px)',
-    paddingTop: 70
+    paddingTop: 70,
+    zIndex: 2
   }
 }
 
