@@ -28,12 +28,31 @@ const serviceIcons = {
 
 class ServiceCards extends PureComponent {
 
+  state = {
+    containerOverflows: false
+  }
+
+  checkIfOverflow(element) {
+    return element.offsetWidth < element.scrollWidth;
+  }
+
+  componentDidMount() {
+    this.setState({
+      containerOverflows: this.checkIfOverflow(this.scrollRef)
+    })
+  }
+
   renderCard = service => {
+    const { containerOverflows } = this.state
     const { classes } = this.props
     const { name, description, route } = service
 
     return (
-        <div key={name} className={classes.cardContainer}>
+        <div
+          key={name}
+          className={classes.cardContainer}
+          style={containerOverflows ? {minWidth: 244} : null}
+        >
           <ImageLoader
             style={{height: 100, width: 100}}
             hdImage={serviceIcons[name]}
@@ -63,11 +82,18 @@ class ServiceCards extends PureComponent {
   }
 
   render() {
+    const { containerOverflows } = this.state
     const { classes } = this.props
 
     return (
-      <div className={classes.container}>
-        <div className={classes.scrollContainer}>
+      <div
+        className={classes.container}
+        style={containerOverflows ? {padding: '0 50px'} : null}
+      >
+        <div
+          className={classes.scrollContainer}
+          ref={ref => this.scrollRef = ref}
+        >
           {servicesData.map(service => this.renderCard(service))}
         </div>
       </div>

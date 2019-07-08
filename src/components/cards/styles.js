@@ -35,6 +35,9 @@ const serviceCardStyles = theme => ({
     overflowX: 'scroll',
     padding: '16px 0'
   },
+  regularContainer: {
+    display: 'flex'
+  },
   cardContainer: {
     display: 'flex',
     flexDirection: 'column',
