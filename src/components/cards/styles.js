@@ -30,14 +30,6 @@ const serviceCardStyles = theme => ({
     ...theme.container,
     height: '100%'
   },
-  scrollContainer: {
-    display: 'flex',
-    overflowX: 'scroll',
-    padding: '16px 0'
-  },
-  regularContainer: {
-    display: 'flex'
-  },
   cardContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -46,9 +38,6 @@ const serviceCardStyles = theme => ({
     maxWidth: 340,
     minWidth: 300,
     margin: 8
-  },
-  gridContainer: {
-    height: '100%'
   },
   cardTitle: {
     fontSize: 16,
