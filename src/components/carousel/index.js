@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import windowSize from 'react-window-size'
 
 import Carousel from 'react-multi-carousel'
@@ -30,6 +30,7 @@ const responsive = {
 const ImageCarousel = ({ classes, windowWidth, children }) => {
 
   const showDots = windowWidth <= responsive.tablet.breakpoint.max
+  const isMobile = windowWidth <= responsive.mobile.breakpoint.max
 
   const ArrowRight = props => (
     <Fab
@@ -54,14 +55,16 @@ const ImageCarousel = ({ classes, windowWidth, children }) => {
       showDots={showDots}
       responsive={responsive}
       ssr={true}
-      infinite={false}
       keyBoardControl={true}
-      containerClass="carousel-container"
       deviceType="desktop"
       customRightArrow={<ArrowRight />}
       customLeftArrow={<ArrowLeft />}
       containerClass={classes.container}
       itemClass={classes.item}
+      removeArrowOnDeviceType={["mobile"]}
+      autoPlay={isMobile}
+      autoPlaySpeed={7000}
+      infinite={isMobile}
     >
       {children}
     </Carousel>
