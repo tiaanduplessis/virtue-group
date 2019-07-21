@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 
-import AliceCarousel from 'react-alice-carousel';
-import "react-alice-carousel/lib/alice-carousel.css";
-
 import ImageLoader from '../image-loader'
+import Carousel from '../carousel'
 
 import electrical from '../../images/icons/services/electrical-dark.svg'
 import maintenance from '../../images/icons/services/maintenance-dark.svg'
@@ -29,20 +27,8 @@ const serviceIcons = {
   construction
 }
 
-const carouselProps = {
-  mouseDragEnabled: true,
-  infinite: false,
-  responsive: {
-    0: { items: 1},
-    720: { items: 2 },
-    1020: { items: 3 },
-    1280: { items: 4 }
-  }
-}
-
 class ServiceCards extends PureComponent {
 
-  handleOnDragStart = e => e.preventDefault()
 
   renderCard = service => {
     const { classes } = this.props
@@ -52,7 +38,6 @@ class ServiceCards extends PureComponent {
         <div
           key={name}
           className={classes.cardContainer}
-          onDragStart={this.handleOnDragStart}
         >
           <ImageLoader
             style={{height: 100, width: 100}}
@@ -87,10 +72,9 @@ class ServiceCards extends PureComponent {
 
     return (
       <div className={classes.container}>
-        <AliceCarousel {...carouselProps}>
+        <Carousel>
           {servicesData.map(service => this.renderCard(service))}
-        </AliceCarousel>
-
+        </Carousel>
       </div>
     )
   }

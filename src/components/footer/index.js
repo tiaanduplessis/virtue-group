@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react'
+import windowSize from 'react-window-size'
 
 import footerStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
 
 import ContactLink from '../links/contact-link'
 import { Toolbar } from '@material-ui/core'
-
-import windowSize from 'react-window-size'
 
 class Footer extends PureComponent {
 
