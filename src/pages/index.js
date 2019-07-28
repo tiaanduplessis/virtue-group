@@ -27,7 +27,7 @@ const Home = ({ classes }) => (
         h4: classes.subtitle
       }}
     >
-      Services that we provide
+      Services
     </Typography>
 
     <ServiceCards/>

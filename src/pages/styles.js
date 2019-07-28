@@ -1,9 +1,11 @@
 const homeStyles = theme => ({
   subtitle: {
     fontSize: 28,
-    margin: '16px 0',
+    marginTop: 30,
     fontWeight: 500,
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    letterSpacing: 3,
+    color: theme.palette.primary.main
   }
 })
 

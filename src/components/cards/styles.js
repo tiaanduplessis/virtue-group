@@ -34,7 +34,8 @@ const serviceCardStyles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
+    padding: 30
   },
   cardTitle: {
     fontSize: 16,

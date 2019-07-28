@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import windowSize from 'react-window-size'
 
 import Carousel from 'react-multi-carousel'
@@ -7,7 +7,7 @@ import Fab from '../buttons/fab'
 import 'react-multi-carousel/lib/styles.css'
 
 import { withStyles } from '@material-ui/core/styles'
-import { carouselStyles } from './styles'
+import { carouselStyles, dotStyles } from './styles'
 
 const responsive = {
   desktop: {
@@ -27,49 +27,65 @@ const responsive = {
   }
 }
 
-const ImageCarousel = ({ classes, windowWidth, children }) => {
 
-  const showDots = windowWidth <= responsive.tablet.breakpoint.max
-  const isMobile = windowWidth <= responsive.mobile.breakpoint.max
+class ImageCarousel extends Component {
 
-  const ArrowRight = props => (
-    <Fab
-      variant="arrowRight"
-      classes={{root: classes.buttonRight}}
-      {...props}
-    />
-  )
+  render() {
+    const { classes, windowWidth, children } = this.props
 
-  const ArrowLeft = props => (
-    <Fab
-      variant="arrowLeft"
-      classes={{root: classes.buttonLeft}}
-      {...props}
-    />
-  )
+    const showDots = windowWidth <= responsive.tablet.breakpoint.max
+    const isMobile = windowWidth <= responsive.mobile.breakpoint.max
 
-  return (
-    <Carousel
-      swipeable={true}
-      draggable={false}
-      showDots={showDots}
-      responsive={responsive}
-      ssr={true}
-      keyBoardControl={true}
-      deviceType="desktop"
-      customRightArrow={<ArrowRight />}
-      customLeftArrow={<ArrowLeft />}
-      containerClass={classes.container}
-      itemClass={classes.item}
-      removeArrowOnDeviceType={["mobile"]}
-      autoPlay={isMobile}
-      autoPlaySpeed={7000}
-      infinite={isMobile}
-    >
-      {children}
-    </Carousel>
-  )
+    const ArrowRight = props => (
+      <Fab
+        variant="arrowRight"
+        tooltip="Next"
+        classes={{root: classes.buttonRight}}
+        {...props}
+      />
+    )
 
+    const ArrowLeft = props => (
+      <Fab
+        variant="arrowLeft"
+        tooltip="Previous"
+        classes={{root: classes.buttonLeft}}
+        {...props}
+      />
+    )
+
+    const Dot = ({ active, ...otherProps }) => (
+      <button
+        type="button"
+        style={dotStyles}
+        className={active ? classes.dotActive : classes.dot}
+        {...otherProps}
+      />
+    )
+
+    return (
+      <Carousel
+        swipeable={true}
+        draggable={false}
+        showDots={showDots}
+        customDot={<Dot/>}
+        responsive={responsive}
+        ssr={true}
+        keyBoardControl={true}
+        deviceType="desktop"
+        customRightArrow={<ArrowRight/>}
+        customLeftArrow={<ArrowLeft/>}
+        containerClass={classes.container}
+        itemClass={classes.item}
+        removeArrowOnDeviceType={["mobile"]}
+        autoPlay={isMobile}
+        autoPlaySpeed={7000}
+        infinite={isMobile}
+      >
+        {children}
+      </Carousel>
+    )
+  }
 }
 
 

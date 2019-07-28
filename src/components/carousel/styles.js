@@ -1,5 +1,11 @@
-const carouselStyles = () => ({
-
+const carouselStyles = theme => ({
+  dot: {
+    backgroundColor: theme.palette.primary.light,
+    opacity: .5
+  },
+  dotActive: {
+    backgroundColor: theme.palette.primary.dark
+  },
   buttonLeft: {
     position: 'absolute',
     left: 16
@@ -9,13 +15,24 @@ const carouselStyles = () => ({
     right: 16
   },
   item: {
-    padding: 8
+    padding: 0
   },
   container: {
-    padding: '24px 0'
+    padding: 0
   }
 })
 
+const dotStyles = {
+  width: 12,
+  height: 12,
+  margin: 3,
+  borderRadius: '50%',
+  border: 'none',
+  outline: 'none',
+  cursor: 'pointer'
+}
+
 export {
-  carouselStyles
+  carouselStyles,
+  dotStyles
 }

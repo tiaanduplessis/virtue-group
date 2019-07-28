@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Fab as MuiFab } from '@material-ui/core'
+import Tooltip from '@material-ui/core/Tooltip';
 
 import {
   KeyboardArrowRight,
@@ -21,12 +22,15 @@ const getIcon = variant => {
 const Fab = ({variant, tooltip, ...otherProps}) => {
 
   return (
-    <MuiFab
-      size="small"
-      {...otherProps}
-    >
-      {getIcon(variant)}
-    </MuiFab>
+    <Tooltip title={tooltip || variant}>
+      <MuiFab
+        size="small"
+        {...otherProps}
+      >
+        {getIcon(variant)}
+      </MuiFab>
+    </Tooltip>
+
   )
 }
 
