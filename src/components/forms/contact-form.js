@@ -9,17 +9,11 @@ import {
 } from '../../utils/validation'
 
 import {
-  Grid,
-  TextField,
   Button,
-  FormControl,
-  InputLabel,
-  Input,
   CircularProgress
 } from '@material-ui/core'
 
-import TelInput from '../inputs/tel-input'
-
+import Input from '../../components/inputs'
 import ExpandingCard from '../cards/expanding-card'
 
 class ContactForm extends PureComponent {
@@ -36,30 +30,48 @@ class ContactForm extends PureComponent {
     isLoading: false
   }
 
+  resetForm = () => {
+    this.setState({
+      name: '',
+      company: '',
+      emailAddress: '',
+      phoneNumber: '',
+      subject: '',
+      message: '',
+      validationErrors: {},
+      previousErrors: []
+    })
+  }
+
   handleChange = event => {
     const {
       previousErrors,
-      validationErrors
+      validationErrors: errors
     } = this.state
 
+    let validationErrors = {...errors}
     const { name , value } = event.target
-    let errors = Object.assign({}, validationErrors)
 
     if (previousErrors.includes(name)) {
       const newErrors = validateField(event.target)
 
       if (Object.entries(newErrors).length) {
-        errors = Object.assign(validationErrors, newErrors)
+        validationErrors = {...validationErrors, ...newErrors}
       } else {
-        delete errors[name]
+        delete validationErrors[name]
       }
     }
-    this.setState({[name]: value, validationErrors: errors})
+
+    this.setState({
+      [name]: value,
+      validationErrors
+    })
   }
 
   handleSubmit = async event => {
     event.preventDefault()
     const validationErrors = validateForm(event.target)
+
     const errorsArr = Object.entries(validationErrors)
 
     if (errorsArr.length) {
@@ -82,17 +94,23 @@ class ContactForm extends PureComponent {
 
     try {
       const res = await axios.post('https://virtue-mailer.herokuapp.com/send', {
-        emailAddress, phoneNumber, name, company, subject, message
+        emailAddress,
+        phoneNumber,
+        name,
+        company,
+        subject,
+        message
       })
 
-      if (res.status !== 200) {
+      if (res.statusText.toLowerCase() !== 'ok') {
         throw new Error(`Invalid response code ${res.status}`)
       }
-      this.setState({isLoading: false})
       console.log({res})
+      this.resetForm()
 
-    } catch(err) {
-      console.log({err})
+    } catch (err) {
+      console.log('Error sending email: ', err)
+    } finally {
       this.setState({isLoading: false})
     }
   }
@@ -116,92 +134,59 @@ class ContactForm extends PureComponent {
         autoComplete="off"
         style={formStyles.form}
       >
-        <Grid container spacing={5}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              name="name"
-              label="Name"
-              value={name}
-              type="text"
-              onChange={this.handleChange}
-              margin="normal"
-              disabled={isLoading}
-              required
-              helperText={validationErrors.name || null}
-              error={!!validationErrors.name}
-            />
-          </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Email"
-              type="email"
-              name="emailAddress"
-              value={emailAddress}
-              autoComplete="email"
-              margin="normal"
-              onChange={this.handleChange}
-              disabled={isLoading}
-              required
-              helperText={validationErrors.emailAddress || null}
-              error={!!validationErrors.emailAddress}
-            />
-          </Grid>
+        <Input
+          name="name"
+          label="Name"
+          value={name}
+          onChange={this.handleChange}
+          disabled={isLoading}
+          required
+          helperText={validationErrors.name || null}
+          error={!!validationErrors.name}
+        />
 
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth margin="normal">
-              <InputLabel
-                htmlFor="formatted-text-mask-input"
-              >
-                Phone number
-              </InputLabel>
-              <Input
-                id="formatted-text-mask-input"
-                name="phoneNumber"
-                value={phoneNumber}
-                onChange={this.handleChange}
-                inputComponent={TelInput}
-                disabled={isLoading}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              name="company"
-              label="Company"
-              value={company}
-              type="text"
-              onChange={this.handleChange}
-              margin="normal"
-              disabled={isLoading}
-            />
-          </Grid>
-        </Grid>
-
-        <TextField
-          fullWidth
+        <Input
+          label="Email"
+          type="email"
+          name="emailAddress"
+          value={emailAddress}
+          autoComplete="email"
+          onChange={this.handleChange}
+          disabled={isLoading}
+          required
+          helperText={validationErrors.emailAddress || null}
+          error={!!validationErrors.emailAddress}
+        />
+        <Input
+          type="tel"
+          label="Phone number"
+          name="phoneNumber"
+          value={phoneNumber}
+          onChange={this.handleChange}
+          disabled={isLoading}
+        />
+        <Input
+          name="company"
+          label="Company"
+          value={company}
+          onChange={this.handleChange}
+          disabled={isLoading}
+        />
+        <Input
           label="Subject"
           name="subject"
           value={subject}
           onChange={this.handleChange}
-          margin="normal"
           disabled={isLoading}
         />
 
-        <TextField
-          fullWidth
+        <Input
+          type="textarea"
           label="Message"
           name="message"
           value={message}
           onChange={this.handleChange}
-          multiline
-          rows="3"
-          rowsMax="4"
-          margin="normal"
           disabled={isLoading}
           required
           helperText={validationErrors.message || null}

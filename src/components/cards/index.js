@@ -1,19 +1,23 @@
 import React from 'react'
 
-import { cardStyles } from './styles'
 import { withStyles } from '@material-ui/core/styles'
+import { cardStyles } from './styles'
 
-import { Grid } from '@material-ui/core'
+import { Grid, Card as MuiCard } from '@material-ui/core'
 
-const Card = ({classes, width, children}) => (
-  <Grid item xs={12} md={width}>
-    <div className={classes.card}>
+const Card = ({classes, width, variant, children}) => (
+  <Grid item xs={12} md={width} >
+    <MuiCard
+      classes={{root: classes.card}}
+      className={classes[`${variant}Card`]}
+    >
       {children}
-    </div>
+    </MuiCard>
   </Grid>
 )
 
 Card.defaultProps = {
+  variant: 'defualt',
   width: 12
 }
 

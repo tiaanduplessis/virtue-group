@@ -1,6 +1,8 @@
 const formStyles = {
   form: {
-    width: '100%'
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap'
   },
   button: {
     marginTop: 22,

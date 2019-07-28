@@ -36,18 +36,18 @@ class Contact extends PureComponent {
       <section className={classes.container}>
         <Grid container spacing={2}>
 
-          <Card width={6}>
-            <ContactLink variant="email"/>
+          <Card width={6} variant="dark">
+            <ContactLink variant="email" color="white"/>
           </Card>
 
-          <Card width={6}>
-            <ContactLink variant="phone"/>
+          <Card width={6} variant="dark">
+            <ContactLink variant="phone" color="white"/>
           </Card>
-
 
           <Grid item xs={12}>
             <ContactForm/>
           </Grid>
+
           <Grid item xs={12}>
             <AddressCard/>
           </Grid>
