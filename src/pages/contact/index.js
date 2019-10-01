@@ -24,7 +24,7 @@ class Contact extends PureComponent {
       }
       console.log({res})
     } catch(err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -35,7 +35,6 @@ class Contact extends PureComponent {
     return (
       <section className={classes.container}>
         <Grid container spacing={2}>
-
           <Card width={6} variant="dark">
             <ContactLink variant="email" color="white"/>
           </Card>

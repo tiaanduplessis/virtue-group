@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import { useTheme } from '@material-ui/styles'
 
@@ -15,14 +15,12 @@ const iconVariant = {
 }
 
 const ContactLink = ({variant, color, style}) => {
-  const { text, href } = data[variant]
   const theme = useTheme()
+  const { text, href } = data[variant]
 
-  const textColor = color === 'primary' ? (
-    theme.palette.primary.dark
-  ) : (
-    theme.colors.white
-  )
+  const textColor = color === 'primary'
+    ? theme.palette.primary.dark
+    : theme.colors.white
 
   const styles = {
     display: 'flex',
@@ -32,20 +30,13 @@ const ContactLink = ({variant, color, style}) => {
     ...style
   }
 
-  const icon = iconVariant[variant]
-
-  const content = (
-    <Fragment>
-      {icon}
-      <span style={{marginLeft: 16}}>{text}</span>
-    </Fragment>
-  )
-
   return (
     <Link
       style={styles}
       href={href}
-    > {content}
+    >
+      {iconVariant[variant]}
+      <span style={{marginLeft: 16}}>{text}</span>
     </Link>
   )
 }

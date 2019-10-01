@@ -109,7 +109,7 @@ class ContactForm extends PureComponent {
       this.resetForm()
 
     } catch (err) {
-      console.log('Error sending email: ', err)
+      console.error(err)
     } finally {
       this.setState({isLoading: false})
     }
@@ -134,7 +134,6 @@ class ContactForm extends PureComponent {
         autoComplete="off"
         style={formStyles.form}
       >
-
         <Input
           name="name"
           label="Name"
