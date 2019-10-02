@@ -1673,15 +1673,6 @@ babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
-background-image-on-load@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/background-image-on-load/-/background-image-on-load-1.1.0.tgz#af1f829968599593b22a8f562c2a314f936a1a96"
-  integrity sha512-xBS0mweRrd8WZYyeaOjnOfSTOUN+2zvkN+gAZJsscNh1SHKHB3DqJsyVM0TZL8CmTsiU6BP0v1tPyTcEQlY8cg==
-  dependencies:
-    prop-types "^15.6.2"
-    react "^16.8.4"
-    react-dom "^16.8.4"
-
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -7327,7 +7318,7 @@ react-dev-utils@^7.0.0:
     strip-ansi "5.0.0"
     text-table "0.2.0"
 
-react-dom@^16.8.4, react-dom@^16.8.6:
+react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   dependencies:
@@ -7446,7 +7437,7 @@ react-window-size@^1.2.2:
   dependencies:
     babel-runtime "^6.6.1"
 
-react@^16.8.4, react@^16.8.6:
+react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   dependencies:

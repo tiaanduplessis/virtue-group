@@ -15,8 +15,8 @@ const Background = ({children}) => (
     <ImageLoader
       style={backgroundStyles.background}
       hdImage={background}
-      sdImage={background}
       alt="background bottom"
+      variant="background"
     />
 
     <div style={backgroundStyles.pageContent}>
@@ -26,8 +26,8 @@ const Background = ({children}) => (
     <ImageLoader
       style={backgroundStyles.bottomImage}
       hdImage={bottomImage}
-      sdImage={bottomImage}
       alt="background bottom"
+      variant="background"
     />
     <Footer />
   </div>

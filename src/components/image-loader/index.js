@@ -1,63 +1,89 @@
-import React, { PureComponent, Fragment } from 'react'
-import BackgroundImageOnLoad from 'background-image-on-load';
+import React, { PureComponent } from 'react'
+import { Skeleton } from '@material-ui/lab'
 
 class ImageLoader extends PureComponent {
 
   static defaultProps = {
     variant: 'default',
-    alt: 'image'
+    skeletonProps: { variant: "circle", width: 100, height: 100 }
   }
 
   state = {
-    hdImageIsLoaded: false
+    imageIsLoaded: false
   }
 
-  render() {
-    const { hdImageIsLoaded } = this.state
+  handleImageLoaded = () => {
+    this.setState({imageIsLoaded: true})
+  }
+
+  renderDefaultImage = imageIsLoaded => {
     const {
       hdImage,
-      sdImage,
-      variant,
+      skeletonProps,
       alt,
       ...otherProps
     } = this.props
 
-    const checkIfLoaded = (
-      <BackgroundImageOnLoad
-        src={hdImage}
-        onLoadBg={() =>
-          this.setState({
-          hdImageIsLoaded: true
-        })}
-        onError={err => console.log('error', err)}
-      />
+    return (
+      <>
+        <img
+          className={imageIsLoaded ? '' : 'hidden'}
+          src={hdImage}
+          alt={alt}
+          onLoad={this.handleImageLoaded}
+          {...otherProps}
+        />
+        {!imageIsLoaded && <Skeleton {...skeletonProps}/>}
+        <style jsx>{`
+          .hidden {
+            display: none
+          }
+        `}</style>
+      </>
     )
+  }
+
+  renderBackgroundImage = imageIsLoaded => {
+    const {
+      hdImage,
+      sdImage,
+      ...otherProps
+    } = this.props
 
     return (
-      <Fragment>
-        {checkIfLoaded}
-        {variant === 'default' ? (
-          <div className="image"
-            {...otherProps}
-          />
-        ) : (
+      <>
+        {!imageIsLoaded && (
           <img
-            src={hdImageIsLoaded ? hdImage: sdImage}
-            alt={alt}
-            {...otherProps}
+            style={{display: 'none'}}
+            src={hdImage}
+            alt="temp"
+            onLoad={this.handleImageLoaded}
           />
         )}
-
+        <div className="image"
+          {...otherProps}
+        />
         <style jsx>{`
           .image {
             width: 100vw;
             overflow: hidden;
-            background-image: url(${hdImageIsLoaded ? hdImage: sdImage});
+            background-image: url(${sdImage && !imageIsLoaded ? sdImage : hdImage});
             background-repeat: no-repeat;
             background-size: cover;
           }
         `}</style>
-      </Fragment>
+      </>
+    )
+  }
+
+  render() {
+    const { imageIsLoaded } = this.state
+    const { variant } = this.props
+
+    return variant === 'background' ? (
+      this.renderBackgroundImage(imageIsLoaded)
+    ) : (
+      this.renderDefaultImage(imageIsLoaded)
     )
   }
 }

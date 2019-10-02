@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import homeStyles from './styles'
 import { withStyles } from '@material-ui/core/styles'
@@ -11,12 +11,14 @@ import ServiceCards from '../components/cards/service-cards'
 import ImageLoader from '../components/image-loader'
 
 const Home = ({ classes }) => (
-  <Fragment>
+  <>
     <div className="homeImage">
       <ImageLoader
         hdImage={homeImageHq}
         sdImage={homeImageLq}
         style={{paddingTop: 'calc(50vh - 100px)'}}
+        alt="home-background"
+        variant="background"
       />
     </div>
 
@@ -31,7 +33,7 @@ const Home = ({ classes }) => (
     </Typography>
 
     <ServiceCards/>
-  </Fragment>
+  </>
 )
 
 export default withStyles(homeStyles)(Home)

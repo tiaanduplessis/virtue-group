@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import ImageLoader from '../image-loader'
 import Carousel from '../carousel'
 
-import { Skeleton } from '@material-ui/lab'
-
 import electrical from '../../images/icons/services/electrical-dark.svg'
 import maintenance from '../../images/icons/services/maintenance-dark.svg'
 import plumbing from '../../images/icons/services/plumbing-dark.svg'
@@ -44,7 +42,6 @@ class ServiceCards extends PureComponent {
             style={{height: 100, width: 100}}
             hdImage={serviceIcons[name]}
             alt={`${name}-icon`}
-            variant="image"
           />
 
           <Typography
