@@ -2,8 +2,8 @@ import React, { PureComponent, Fragment } from 'react'
 
 import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 
-import Transition from './Transition'
-import Navbar from './Navbar'
+import Transition from '@components/Transition'
+import Navbar from '@components/Navbar'
 
 import Home from '../pages/Home'
 import About from '../pages/About'
@@ -11,7 +11,7 @@ import Electrical from '../pages/Electrical'
 import Plumbing from '../pages/Plumbing'
 import Contact from '../pages/Contact'
 
-import { navData } from '../utils/navData'
+import { navData } from '@utils/navData'
 
 const pages = { Home, About, Electrical, Plumbing, Contact }
 
@@ -21,7 +21,7 @@ class PageContainer extends PureComponent {
   static getDerivedStateFromProps(props, state) {
     const { pathname } = props.location
     const page = navData.find(item => item.path === pathname)
-    if(page.id !== state.value) return {value: page.id}
+    if(page && page.id !== state.value) return {value: page.id}
   }
 
   state = {

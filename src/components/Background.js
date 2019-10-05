@@ -1,6 +1,6 @@
 import React from 'react'
 
-import background from '../images/background.svg'
+import background from '@images/background.svg'
 
 const Background = ({children}) => {
   return <div className="pageHolder">
